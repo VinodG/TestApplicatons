@@ -18,7 +18,6 @@ import com.taksycraft.testapplicatons.sockets.UserDO;
 import java.util.HashMap;
 import java.util.Vector;
 
-import static androidx.room.RoomMasterTable.TABLE_NAME;
 
 public class DbHelper extends SQLiteOpenHelper {
     private String TAG = DbHelper.class.getSimpleName();
