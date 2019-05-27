@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".customviews.ViewsTestingActivity">
+    <Button
+        android:onClick="onClkPerform"
+        android:text="Perform"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/ivPreview"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:visibility="gone"/>
+    <com.taksycraft.testapplicatons.customviews.SignatureView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+    <com.taksycraft.testapplicatons.customviews.ImageViewWithZoom
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "659270437802",
+    "firebase_url": "https://testapplicatons.firebaseio.com",
+    "project_id": "testapplicatons",
+    "storage_bucket": "testapplicatons.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659270437802:android:9c2baf4f38e73c6c",
+        "android_client_info": {
+          "package_name": "com.taksycraft.testapplicatons"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659270437802-4digesu2a0glpg7c1mjadu6hgch2a1ep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taksycraft.testapplicatons",
+            "certificate_hash": "61c7ceeebcebeed6801fb659f3e21e3aea7b0812"
+          }
+        },
+        {
+          "client_id": "659270437802-qthfgh1g4v0a662l5ea3aajgosu1i1gq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1uqJiQQuMWxwsB76CAueld-sQ2YRYksQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659270437802-qthfgh1g4v0a662l5ea3aajgosu1i1gq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

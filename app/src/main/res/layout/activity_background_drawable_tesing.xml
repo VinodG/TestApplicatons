@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAccent"
+    tools:context=".customviews.BackgroundDrawableTesingActivity">
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:text="Vinod"/>
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_marginLeft="20px"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:text="Vinod"/>
+    <ImageView
+        android:id="@+id/ivSwitch"
+        android:layout_width="120px"
+        android:layout_height="100px"
+         />
+    <TextView
+        android:id="@+id/myText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:text="@string/lengthy_string" />
+
+    <com.taksycraft.testapplicatons.customviews.ScrollTextView
+        android:id="@+id/scrolltext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lengthy_string"/>
+    <com.taksycraft.testapplicatons.customviews.ScrollTextView
+        android:id="@+id/scrolltext2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/lengthy_string2"/>
+    <com.taksycraft.testapplicatons.customviews.ImageSwappingView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

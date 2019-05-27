@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".firebasedatabase.ChatActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/ivIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/holo_green_dark"/>
+    <TextView
+        android:id="@+id/tvCurrentUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:maxLines="3"
+        android:visibility="gone"/>
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionSend"/>
+    <Button
+        android:text="send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClkPush"/>
+    <Button
+        android:id="@+id/btnPickImage"
+        android:text="Pick Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClkPickImage"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/btnSynck"
+        android:text="Sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClkSync"
+        android:visibility="gone"/>
+
+
+</LinearLayout>

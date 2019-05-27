@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestApplicatons</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lengthy_string">Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically Your long text goes here. You can also change it programmaticallyYour long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically</string>
+    <string name="lengthy_string2">Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically  </string>
+    <!--<string name="fileprovidercamera">com.taksycraft.testapplicatons.fileproviderforcamera</string>-->
+</resources>
