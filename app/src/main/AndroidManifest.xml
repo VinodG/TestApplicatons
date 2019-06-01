@@ -30,7 +30,10 @@
         <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
         <activity android:name=".sqlite.SqliteActivity" />
         <activity android:name=".customviews.ViewsTestingActivity" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".recyclerview.DiffUtilsActivity" />
         <activity android:name=".sockets.FriendsListActivity" />
@@ -38,10 +41,7 @@
             android:name=".sockets.ChatUsingSocketActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".sockets.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name=".media.VoiceRecordingActivity" />
         <activity android:name=".mlkit.TraslationActivitiy" />
