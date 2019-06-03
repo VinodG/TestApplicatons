@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
@@ -12,15 +14,21 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.taksycraft.testapplicatons.R;
+import com.taksycraft.testapplicatons.common.CommonAdapter;
+
+import java.util.Vector;
 
 import static androidx.dynamicanimation.animation.SpringAnimation.*;
 
@@ -34,17 +42,103 @@ public class AnimationActivity extends AppCompatActivity {
     private float dX;
     private SpringAnimation xxAnimation;
     private ImageView iv2;
+    private LinearLayout llKeypad;
+    private RecyclerView rv;
+    private CommonAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        animationInitControls();
+        animationForKeypad();
+    }
+
+    private void animationForKeypad() {
+        setContentView(R.layout.activity_customkeypad_animation);
+        llKeypad = (LinearLayout)findViewById(R.id.llKeypad);
+        final LinearLayout llOuter = (LinearLayout) findViewById(R.id.llOuter);
+        Button btnOpenKeypad = (Button) findViewById(R.id.btnOpenKeypad);
+        rv= (RecyclerView)findViewById(R.id.rv);
+        rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        final Vector<String>vec = new Vector<String>();
+        for (int i= 0 ;i<100;i++)
+            vec.add("Item "+(i+1));
+        adapter = new CommonAdapter(vec, new CommonAdapter.ListListener() {
+            @Override
+            public void onBindViewHolder(CommonAdapter.CommonHolder holder, int position) {
+                holder.getTextView().setText(vec.get(position));
+            }
+
+            @Override
+            public void onItemClick(Object object, int position) {
+
+            }
+        });
+        rv.setAdapter(adapter);
+        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName()+" "+llOuter.getHeight());
+        btnOpenKeypad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                rv.startAnimation(new ResizeAnimation( rv,rv.getWidth(),-1,rv.getWidth() ,-500 ));
+//                llOuter.startAnimation(new ResizeAnimation( llOuter,llOuter.getWidth(),1500,llOuter.getWidth() ,1000 ));
+                ResizeAnimation anim = new ResizeAnimation( llOuter,llOuter.getWidth(),1500,llOuter.getWidth() ,1000 );
+                anim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                        llKeypad.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                        rv.smoothScrollToPosition(vec.size()-1);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                    }
+                });
+                llOuter.startAnimation(anim );
+            }
+        });
+        llKeypad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ResizeAnimation anim = new ResizeAnimation( llOuter,llOuter.getWidth(),1000,llOuter.getWidth() ,1500 );
+                anim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                        rv.smoothScrollToPosition(vec.size()-1);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+                    }
+                });
+                llOuter.startAnimation(anim );
+
+            }
+        });
+
+    }
+
+    private void animationInitControls() {
         setContentView(R.layout.activity_animation);
         iv=(ImageView)findViewById(R.id.iv);
         iv2=(ImageView)findViewById(R.id.iv2);
 //        fadingAnimation(iv);
 //        transitionAnimation(iv);
 //        springAnimation(iv);
-        moveDownAnimation(iv);
+        resizeViewAnimation(iv);
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,15 +154,17 @@ public class AnimationActivity extends AppCompatActivity {
 //        imageViewDragSpringAnimation();
     }
 
-    private void moveDownAnimation(final ImageView iv) {
+    private void resizeViewAnimation(final ImageView iv) {
         iv2.startAnimation(new ResizeAnimation( iv2,500,500,500 ,1000 ));
-//        LinearInterpolator linearInterpolator = new LinearInterpolator();
-//        ObjectAnimator anim = ObjectAnimator.ofFloat(iv, "translationY", 0f, 200 );
-//        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv2, "translationY", 0f, 200 );
-//        anim.setInterpolator(linearInterpolator);
-//        anim2.setInterpolator(linearInterpolator);
-//        anim.setDuration(500).start();
-//        anim2.setDuration(500).start();
+    }
+    private void moveViewsDownAnimation() {
+        LinearInterpolator linearInterpolator = new LinearInterpolator();
+        ObjectAnimator anim = ObjectAnimator.ofFloat(iv, "translationY", 0f, 200 );
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv2, "translationY", 0f, 200 );
+        anim.setInterpolator(linearInterpolator);
+        anim2.setInterpolator(linearInterpolator);
+        anim.setDuration(500).start();
+        anim2.setDuration(500).start();
     }
 
     @Override
