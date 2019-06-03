@@ -14,10 +14,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.taksycraft.testapplicatons.R;
+
+import static androidx.dynamicanimation.animation.SpringAnimation.*;
 
 public class AnimationActivity extends AppCompatActivity {
 
@@ -28,16 +33,42 @@ public class AnimationActivity extends AppCompatActivity {
     private float dY;
     private float dX;
     private SpringAnimation xxAnimation;
+    private ImageView iv2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
         iv=(ImageView)findViewById(R.id.iv);
+        iv2=(ImageView)findViewById(R.id.iv2);
 //        fadingAnimation(iv);
 //        transitionAnimation(iv);
-        springAnimation(iv);
+//        springAnimation(iv);
+        moveDownAnimation(iv);
+        iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AnimationActivity.this, "clicked on apple",Toast.LENGTH_SHORT).show();
+            }
+        });
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AnimationActivity.this, "clicked on background",Toast.LENGTH_SHORT).show();
+            }
+        });
 //        imageViewDragSpringAnimation();
+    }
+
+    private void moveDownAnimation(final ImageView iv) {
+        iv2.startAnimation(new ResizeAnimation( iv2,500,500,500 ,1000 ));
+//        LinearInterpolator linearInterpolator = new LinearInterpolator();
+//        ObjectAnimator anim = ObjectAnimator.ofFloat(iv, "translationY", 0f, 200 );
+//        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv2, "translationY", 0f, 200 );
+//        anim.setInterpolator(linearInterpolator);
+//        anim2.setInterpolator(linearInterpolator);
+//        anim.setDuration(500).start();
+//        anim2.setDuration(500).start();
     }
 
     @Override
@@ -59,11 +90,11 @@ public class AnimationActivity extends AppCompatActivity {
         @Override
         public void onGlobalLayout() {
             Log.e(TAG,iv.getX()+"");
-            xAnimation = createSpringAnimation(iv, SpringAnimation.X, iv.getX(),
+            xAnimation = (SpringAnimation) createSpringAnimation(iv, X, iv.getX(),
                     SpringForce.STIFFNESS_HIGH, SpringForce.DAMPING_RATIO_NO_BOUNCY);
-            xxAnimation = createSpringAnimation(iv, SpringAnimation.X, 1500,
+            xxAnimation = createSpringAnimation(iv, X, 1500,
                     SpringForce.STIFFNESS_HIGH, SpringForce.DAMPING_RATIO_NO_BOUNCY);
-            yAnimation = createSpringAnimation(iv, SpringAnimation.Y, iv.getY(),
+            yAnimation = createSpringAnimation(iv, Y, iv.getY(),
                     SpringForce.STIFFNESS_MEDIUM, SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
         }
     };
@@ -113,7 +144,7 @@ public class AnimationActivity extends AppCompatActivity {
     }
 
     private void springAnimation(ImageView iv) {
-        SpringAnimation springAnim = new SpringAnimation(iv, SpringAnimation.TRANSLATION_Y);
+        SpringAnimation springAnim = new SpringAnimation(iv, TRANSLATION_Y);
         SpringForce springForce = new SpringForce();
         springForce.setFinalPosition(200f);
         springForce.setStiffness(SpringForce.STIFFNESS_LOW);

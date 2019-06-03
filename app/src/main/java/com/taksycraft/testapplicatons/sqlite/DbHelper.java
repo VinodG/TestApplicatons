@@ -296,6 +296,11 @@ public class DbHelper extends SQLiteOpenHelper {
                         "  FROM tblMessages where status = "+status+
                         " and ((msgfrom='"+fromId+"' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' )) " +
                         " order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt)"  ;
+            } if(status==-2){
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt " +
+                        "   FROM tblMessages " +
+                        " where ((msgfrom='"+fromId+"' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' )) " +
+                        " order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt) "  ;
             } else {
                 selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt " +
                         "   FROM tblMessages " +
@@ -390,6 +395,17 @@ public class DbHelper extends SQLiteOpenHelper {
             try {
                 getWritableDatabase().execSQL("delete from tblMessages " +
                         " where ((msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' ))" ) ;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    public void deleteAllRecordsBasedOnStatus(int  statusId ) {
+        synchronized (DBClient.LOCK) {
+            try {
+                getWritableDatabase().execSQL("delete from tblMessages " +
+                        " where   status="+statusId ) ;
             } catch (SQLException e) {
                 e.printStackTrace();
             }

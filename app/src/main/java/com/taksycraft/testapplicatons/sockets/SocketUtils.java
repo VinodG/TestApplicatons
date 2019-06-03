@@ -12,7 +12,7 @@ import io.socket.emitter.Emitter;
 
 public class SocketUtils {
     public static final String CONNECTION_UPDATES = "CONNECTION_UPDATES";
-    private static final String URL = "http://192.168.0.120:3000";
+    private static final String URL = "http://192.168.0.114:3000";
     private static final String TAG = SocketUtils.class.getSimpleName();
     private static Socket socket;
     public static final String REGISTRATION ="registration";
@@ -24,6 +24,8 @@ public class SocketUtils {
     public static final String SENT_MESSAGE="sendMessage";
     public static final String SEEN_MESSAGES="checkMessageSeen";
     public static final String SEEN_UPDATED_MESSAGES="seenStatus";
+    public static final String TEXT_TYPING="isTyping";
+    public static final String LISTENER_TEXTING="typing";
 
     public static  void setContext(Context con ) {
          context = con ;

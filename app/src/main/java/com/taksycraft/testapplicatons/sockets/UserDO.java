@@ -3,6 +3,15 @@ package com.taksycraft.testapplicatons.sockets;
 import java.io.Serializable;
 
 public class UserDO extends  Object implements Serializable {
+    public String getRoom_no() {
+        return room_no;
+    }
+
+    public void setRoom_no(String room_no) {
+        this.room_no = room_no;
+    }
+
+    private String room_no = "";
     public String getCustomer_id() {
         return customer_id;
     }
