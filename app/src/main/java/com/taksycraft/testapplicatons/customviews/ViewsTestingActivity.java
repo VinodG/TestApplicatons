@@ -2,19 +2,12 @@ package com.taksycraft.testapplicatons.customviews;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
+import android.widget.AnalogClock;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.BitmapUtils;
-
-import java.io.File;
-import java.io.FileOutputStream;
 
 public class ViewsTestingActivity extends AppCompatActivity {
 
@@ -29,7 +22,23 @@ public class ViewsTestingActivity extends AppCompatActivity {
 //        ivPreview= (ImageView)findViewById(R.id.ivPreview);
 //        ivPreview.setVisibility(View.GONE);
 //        sv.setBrushWidth(15);
-        setContentView(new ImageViewWithZoom(this));
+//        setContentView(new MultiTouchView(this));
+        setContentView(getRegionView());
+    }
+
+    private ZoomAndDragView getRegionView() {
+        // Allocate a RegionView.
+        final ZoomAndDragView lRegionView = new ZoomAndDragView(this);
+        // Add some example items to drag.
+        lRegionView.addView(new AnalogClock(this));
+        lRegionView.addView(new AnalogClock(this));
+        lRegionView.addView(new AnalogClock(this));
+        // Assert that we only want to drag Views within the confines of the RegionView.
+        lRegionView.setWrapContent(true);
+        // Assert that after we've finished scaling a View, we want to stop being able to drag it until a new drag is started.
+        lRegionView.setDropOnScale(true);
+        // Look at the RegionView.
+        return  lRegionView;
     }
 
     public void onClkPerform(View view) {
