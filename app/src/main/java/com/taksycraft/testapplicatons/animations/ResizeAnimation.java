@@ -27,7 +27,7 @@ public class ResizeAnimation extends Animation {
         mFromHeight = fromHeight;
         mFromWidth = fromWidth;
         mView = v;
-        setDuration(100);
+        setDuration(200);
     }
 
     @Override

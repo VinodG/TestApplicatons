@@ -50,7 +50,74 @@ public class AnimationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        animationInitControls();
-        animationForKeypad();
+//        animationForKeypad();
+        compositeViewWithAnimation();
+    }
+
+    private void compositeViewWithAnimation() {
+        final CompositeView compositeView = new CompositeView(this,1000,1700);
+        compositeView.setMainLayout(R.layout.activity_composite_one,1000,1000);
+        compositeView.setChildLayout(R.layout.activity_composite_two);
+        compositeView.getViewChild().setBackgroundColor(Color.GREEN);
+        compositeView.getMainChild().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.collapse();
+            }
+        });
+        compositeView.getViewChild().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.expand();
+            }
+        });
+        View view = compositeView.getView();
+        setContentView(view);
+        llKeypad = (LinearLayout)view.findViewById(R.id.llKeypad);
+        final LinearLayout llOuter =  (LinearLayout)view. findViewById(R.id.llOuter);
+        Button btnOpenKeypad = (Button) view.findViewById(R.id.btnOpenKeypad);
+        rv= (RecyclerView)view. findViewById(R.id.rv);
+        rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        final Vector<String>vec = new Vector<String>();
+        for (int i= 0 ;i<100;i++)
+            vec.add("Item "+(i+1));
+        adapter = new CommonAdapter(vec, new CommonAdapter.ListListener() {
+            @Override
+            public void onBindViewHolder(CommonAdapter.CommonHolder holder, int position) {
+                holder.getTextView().setText(vec.get(position));
+            }
+
+            @Override
+            public void onItemClick(Object object, int position) {
+
+            }
+        });
+        compositeView.setMainLayoutChangeListener(new CompositeView.ViewChange() {
+            @Override
+            public void onCollapse() {
+                rv.smoothScrollToPosition(vec.size()-1);
+            }
+
+            @Override
+            public void onExpand() {
+
+            }
+        });
+        rv.setAdapter(adapter);
+        btnOpenKeypad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.collapse();
+            }
+        });
+        llKeypad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.expand();
+            }
+        });
+
+
     }
 
     private void animationForKeypad() {
@@ -81,6 +148,7 @@ public class AnimationActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                rv.startAnimation(new ResizeAnimation( rv,rv.getWidth(),-1,rv.getWidth() ,-500 ));
 //                llOuter.startAnimation(new ResizeAnimation( llOuter,llOuter.getWidth(),1500,llOuter.getWidth() ,1000 ));
+                Log.e(TAG, new Exception().getStackTrace()[0].getMethodName()+" "+llOuter.getWidth()+", "+1500+", "+llOuter.getWidth()+", "+1000);
                 ResizeAnimation anim = new ResizeAnimation( llOuter,llOuter.getWidth(),1500,llOuter.getWidth() ,1000 );
                 anim.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -106,6 +174,8 @@ public class AnimationActivity extends AppCompatActivity {
         llKeypad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e(TAG, new Exception().getStackTrace()[0].getMethodName()+" "+llOuter.getWidth()+", "+1000+", "+llOuter.getWidth()+", "+1500);
+
                 ResizeAnimation anim = new ResizeAnimation( llOuter,llOuter.getWidth(),1000,llOuter.getWidth() ,1500 );
                 anim.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -117,6 +187,7 @@ public class AnimationActivity extends AppCompatActivity {
                     public void onAnimationEnd(Animation animation) {
                         Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
                         rv.smoothScrollToPosition(vec.size()-1);
+                        llKeypad.setVisibility(View.GONE);
                     }
 
                     @Override
