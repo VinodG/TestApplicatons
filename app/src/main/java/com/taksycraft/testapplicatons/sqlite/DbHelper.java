@@ -30,7 +30,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
         sqLiteDatabase.execSQL("create table tblMessages (id varachar, msgfrom  varchar, msgto varchar, " +
-                "msg varchar, createdAt varchar, updatedAt varchar, status integer,servertime VARCHAR,seenAt VARCHAR )");
+                "msg varchar, createdAt varchar, updatedAt varchar, status integer,servertime VARCHAR,seenAt VARCHAR," +
+                " fileType VARCHAR,duration VARCHAR  )");
         sqLiteDatabase.execSQL("create table tblSyncTimes( userId varachar,  syncTime VARCHAR )");
         sqLiteDatabase.execSQL("create table tblUsers( userId varachar,  name VARCHAR )");
     }
@@ -39,7 +40,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         Log.e(TAG, new Exception().getStackTrace()[0].getMethodName() + " from  " + oldVersion + " to " + newVersion);
         if (newVersion > oldVersion) {
-//            sqLiteDatabase.execSQL("ALTER TABLE tblMessages ADD COLUMN seen_at VARCHAR ");
+//            sqLiteDatabase.execSQL("ALTER TABLE tblMessages ADD COLUMN filepath VARCHAR ");
+            sqLiteDatabase.execSQL("ALTER TABLE tblMessages ADD COLUMN fileType VARCHAR ");
+            sqLiteDatabase.execSQL("ALTER TABLE tblMessages ADD COLUMN duration VARCHAR ");
         }
     }
 
@@ -194,6 +197,9 @@ public class DbHelper extends SQLiteOpenHelper {
                             values.put("status", chatDO.status);
                             values.put("servertime", chatDO.server_time);
                             values.put("seenAt", chatDO.seen_at);
+//                            values.put("filepath", chatDO.file_url);
+                            values.put("fileType", chatDO.file_type);
+                            values.put("duration", chatDO.file_duration);
 
                             SQLiteDatabase db = getWritableDatabase();
                             int updatedCount = db.update("tblMessages", values, "id=?", new String[]{chatDO._id});
@@ -292,17 +298,17 @@ public class DbHelper extends SQLiteOpenHelper {
             Vector<ChatObj> vec = new Vector<ChatObj>();
             String selectQuery= null;
             if (status==1 || status==0) {
-                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime ,seenAt  " +
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime ,seenAt,filepath,fileType, duration  " +
                         "  FROM tblMessages where status = "+status+
                         " and ((msgfrom='"+fromId+"' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' )) " +
                         " order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt)"  ;
-            } if(status==-2){
-                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt " +
+            } else if(status==-2){
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt,filepath,fileType, duration  " +
                         "   FROM tblMessages " +
                         " where ((msgfrom='"+fromId+"' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' )) " +
                         " order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt) "  ;
             } else {
-                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt " +
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt,filepath,fileType, duration  " +
                         "   FROM tblMessages " +
                         " where ((msgfrom='"+fromId+"' OR msgfrom='"+toId+"' ) and  (msgfrom='"+fromId+ "' OR msgfrom='"+toId+"' )) " +
                         " order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt) "  ;
@@ -325,6 +331,10 @@ public class DbHelper extends SQLiteOpenHelper {
                         obj.status= cursor.getInt(i++);
                         obj.server_time= cursor.getString(i++);
                         obj.seen_at= cursor.getString(i++);
+//                        obj.file_url= cursor.getString(i++);
+                        obj.file_type= cursor.getString(i++);
+                        obj.file_duration= cursor.getString(i++);
+
                         vec.add(obj);
                     } while (cursor.moveToNext());
                 }
@@ -343,10 +353,10 @@ public class DbHelper extends SQLiteOpenHelper {
             Vector<ChatObj> vec = new Vector<ChatObj>();
             String selectQuery= null;
             if (status==1 || status==0) {
-                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime ,seenAt  " +
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime ,seenAt,filepath,fileType, duration   " +
                         "  FROM tblMessages where status = "+status+" order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt)"  ;
             } else {
-                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt " +
+                selectQuery = "SELECT  id  , msgfrom   , msgto  , msg  , createdAt  , updatedAt  , status ,servertime, seenAt,filepath,fileType, duration  " +
                         "   FROM tblMessages order by strftime('%Y-%m-%d %H:%M:%S',servertime) and strftime('%Y-%m-%d %H:%M:%S',createdAt) "  ;
             }
 
@@ -368,6 +378,9 @@ public class DbHelper extends SQLiteOpenHelper {
                         obj.status= cursor.getInt(i++);
                         obj.server_time= cursor.getString(i++);
                         obj.seen_at= cursor.getString(i++);
+//                        obj.file_url= cursor.getString(i++);
+                        obj.file_type= cursor.getString(i++);
+                        obj.file_duration= cursor.getString(i++);
                         vec.add(obj);
                     } while (cursor.moveToNext());
                 }

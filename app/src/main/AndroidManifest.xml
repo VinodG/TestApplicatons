@@ -23,25 +23,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SecondActivity"></activity>
-        <activity android:name=".activities.FirstActivity"  >
+        <activity android:name=".parsing.ParsingTestingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".threads.ThreadsActivity"></activity>
+        <activity android:name=".retrofit.UploadingFileActivity"></activity>
+        <activity android:name=".activities.SecondActivity" />
+        <activity android:name=".activities.FirstActivity" />
+        <activity android:name=".threads.ThreadsActivity" />
         <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
         <activity android:name=".sqlite.SqliteActivity" />
-        <activity android:name=".customviews.ViewsTestingActivity" >
-
-        </activity>
+        <activity android:name=".customviews.ViewsTestingActivity"></activity>
         <activity android:name=".recyclerview.DiffUtilsActivity" />
-        <activity android:name=".sockets.FriendsListActivity" >
+        <activity android:name=".sockets.FriendsListActivity">
 
         </activity>
         <activity
             android:name=".sockets.ChatUsingSocketActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".sockets.LoginActivity">
-
-        </activity>
+        <activity android:name=".sockets.LoginActivity" />
         <activity android:name=".media.VoiceRecordingActivity" />
         <activity android:name=".mlkit.TraslationActivitiy" />
         <activity android:name=".contentprovider.AnotherAppContentResolver" />
@@ -107,16 +109,11 @@
         <activity android:name=".camera.CameraActivity" />
         <activity android:name=".camera.ImagePickerActivity" />
         <activity android:name=".recyclerview.RecyclerViewActivity" />
+        <activity android:name=".recyclerview.RecyclerViewWithVoiceChatItemsActivity"></activity>
         <activity android:name=".firebasedatabase.RegistationActivity" />
         <activity android:name=".firebasedatabase.UsersActivity" />
         <activity android:name=".firebasedatabase.ChatActivity" />
-        <activity android:name=".animations.AnimationActivity"  >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".animations.AnimationActivity" />
         <activity android:name=".rxjava.RxNextActivity" />
         <activity android:name=".rxjava.RxJavaMainActivity" />
         <activity android:name=".customkeypad.KeypadActivity" />

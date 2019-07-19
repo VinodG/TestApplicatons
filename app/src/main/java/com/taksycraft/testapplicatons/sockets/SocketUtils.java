@@ -12,7 +12,7 @@ import io.socket.emitter.Emitter;
 
 public class SocketUtils {
     public static final String CONNECTION_UPDATES = "CONNECTION_UPDATES";
-    private static final String URL = "http://192.168.0.114:3000";
+    private static final String URL = "http://192.168.0.115:3000";
     private static final String TAG = SocketUtils.class.getSimpleName();
     private static Socket socket;
     public static final String REGISTRATION ="registration";

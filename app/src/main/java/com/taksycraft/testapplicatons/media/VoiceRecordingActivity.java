@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -60,13 +61,20 @@ public class VoiceRecordingActivity extends AppCompatActivity {
 
         OnClickListener clicker = new OnClickListener() {
             public void onClick(View v) {
-                onRecord(mStartRecording);
-                if (mStartRecording) {
-                    setText("Stop recording");
-                } else {
-                    setText("Start recording");
+                if(permissionToRecordAccepted)
+                {
+                    onRecord(mStartRecording);
+                    if (mStartRecording) {
+                        setText("Stop recording");
+                    } else {
+                        setText("Start recording");
+                    }
+                    mStartRecording = !mStartRecording;
+                }else{
+                    Toast.makeText(VoiceRecordingActivity.this,
+                            "Please give permission to record audio" , Toast.LENGTH_SHORT).show();
                 }
-                mStartRecording = !mStartRecording;
+
             }
         };
 
@@ -153,7 +161,6 @@ public class VoiceRecordingActivity extends AppCompatActivity {
         recorder = null;
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode,   String[] permissions,  int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -162,7 +169,12 @@ public class VoiceRecordingActivity extends AppCompatActivity {
                 permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 break;
         }
-        if (!permissionToRecordAccepted ) finish();
+        if (!permissionToRecordAccepted )
+//            finish();
+            Toast.makeText(VoiceRecordingActivity.this,
+                    "Please give permission to record audio" , Toast.LENGTH_SHORT).show();
+
+
 
     }
 

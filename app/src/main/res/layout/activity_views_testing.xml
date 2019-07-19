@@ -5,26 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/holo_blue_bright"
     tools:context=".customviews.ViewsTestingActivity">
-    <Button
-        android:onClick="onClkPerform"
-        android:text="Perform"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:id="@+id/ivPreview"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <Button
+            android:onClick="onClkPerform"
+            android:text="Perform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:visibility="gone"/>
+        <com.taksycraft.testapplicatons.customviews.SignatureView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"/>
+        <!--<com.taksycraft.testapplicatons.customviews.ImageViewWithZoom-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+    </LinearLayout>
+    <com.taksycraft.testapplicatons.customviews.FloatingView
         android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:visibility="gone"/>
-    <com.taksycraft.testapplicatons.customviews.SignatureView
-        android:id="@+id/sv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="gone"/>
-    <com.taksycraft.testapplicatons.customviews.ImageViewWithZoom
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:background="@android:color/holo_orange_dark"></LinearLayout>-->
+
+    </com.taksycraft.testapplicatons.customviews.FloatingView>
+
 
 </LinearLayout>

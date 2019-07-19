@@ -51,6 +51,27 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/ivPausePlay"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary"/>
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <SeekBar
+            android:id="@+id/skVoice"
+            android:layout_width="300px"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 
 

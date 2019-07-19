@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,11 +50,56 @@ public class AnimationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        animationInitControls();
 //        animationForKeypad();
-        compositeViewWithAnimation();
+//        compositeViewWithAnimation();
+        nestedCompositeView();
+    }
+
+    private void nestedCompositeView() {
+        final ResizableCompositeView compositeView = new ResizableCompositeView(this,500,1000);
+        compositeView.setMainLayout(R.layout.activity_registation,500,500);
+        compositeView.setChildLayout(R.layout.fragment_fragment1);
+        ViewGroup childCompositieView = (ViewGroup)compositeView.getViewChild();
+        childCompositieView.setBackgroundColor(Color.GREEN);
+        compositeView.getMainChild().setBackgroundColor(Color.RED);
+        final ResizableCompositeView compositeView2 = new ResizableCompositeView(this,500,500);
+        compositeView2.setMainLayout(R.layout.activity_registation,250,500);
+        compositeView2.setChildLayout(R.layout.activity_registation);
+        View childCompositieView2 = compositeView2.getMainChild();
+        childCompositieView.addView(compositeView2.getView());
+        View expand1 = compositeView.getMainChild().findViewById(R.id.etInput);
+        View collapse1 = compositeView.getMainChild().findViewById(R.id.btnRegistration);
+        View expand2 = childCompositieView2.findViewById(R.id.etInput);
+        View collapse2 = childCompositieView2.findViewById(R.id.btnRegistration);
+        expand1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.expand();
+            }
+        });
+        collapse1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView.collapse();
+            }
+        });
+        expand2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView2.expand();
+            }
+        });
+        collapse2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compositeView2.collapse();
+            }
+        });
+        setContentView(compositeView.getView());
+
     }
 
     private void compositeViewWithAnimation() {
-        final CompositeView compositeView = new CompositeView(this,1000,1700);
+        final ResizableCompositeView compositeView = new ResizableCompositeView(this,1000,1500);
         compositeView.setMainLayout(R.layout.activity_composite_one,1000,1000);
         compositeView.setChildLayout(R.layout.activity_composite_two);
         compositeView.getViewChild().setBackgroundColor(Color.GREEN);
@@ -92,7 +136,7 @@ public class AnimationActivity extends AppCompatActivity {
 
             }
         });
-        compositeView.setMainLayoutChangeListener(new CompositeView.ViewChange() {
+        compositeView.setMainLayoutChangeListener(new ResizableCompositeView.ViewChange() {
             @Override
             public void onCollapse() {
                 rv.smoothScrollToPosition(vec.size()-1);

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
-public class CompositeView {
-    private static   String TAG = CompositeView.class.getSimpleName();
+public class ResizableCompositeView {
+    private static   String TAG = ResizableCompositeView.class.getSimpleName();
     private final Context context;
     private   int llMainWidth= 0 ,llMainHeight = 0 ,childWidth= 0 , childHeight= 0 ;
     private   LinearLayout llMain;
@@ -20,13 +20,13 @@ public class CompositeView {
     private boolean isAnimationStarted  = false;
     private boolean isExpanded  = true;
 
-    public CompositeView(Context context) {
+    public ResizableCompositeView(Context context) {
         this.context = context;
         this.llMain = new LinearLayout(context);
         llMain.setOrientation(LinearLayout.VERTICAL);
         llMain.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
-    public CompositeView(Context context,int width, int height) {
+    public ResizableCompositeView(Context context, int width, int height) {
         this.context = context;
         this.llMain = new LinearLayout(context);
         llMain.setOrientation(LinearLayout.VERTICAL);

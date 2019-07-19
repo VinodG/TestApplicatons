@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AnalogClock;
 import android.widget.ImageView;
 
+import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.BitmapUtils;
 
 public class ViewsTestingActivity extends AppCompatActivity {
@@ -17,13 +18,13 @@ public class ViewsTestingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_views_testing);
+        setContentView(R.layout.activity_views_testing);
 //        sv = (SignatureView)findViewById(R.id.sv);
 //        ivPreview= (ImageView)findViewById(R.id.ivPreview);
 //        ivPreview.setVisibility(View.GONE);
 //        sv.setBrushWidth(15);
 //        setContentView(new MultiTouchView(this));
-        setContentView(getRegionView());
+//        setContentView(getRegionView());
     }
 
     private ZoomAndDragView getRegionView() {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"/>
+    <TextView
+        android:id="@+id/tv_audio_lenght"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"/>
+    <TextView
+        android:id="@+id/tv_audio_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"/>
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+       />
+    <!--btn_play =   itemView.findViewById(R.id.btn_play);-->
+    <!--tvAudioLength = (TextView) itemView.findViewById(R.id.tv_audio_lenght);-->
+    <!--tvAudioName = (TextView) itemView.findViewById(R.id.tv_audio_name);-->
+    <!--seekBar = (SeekBar) itemView.findViewById(R.id.seekBar);-->
+
+</LinearLayout>

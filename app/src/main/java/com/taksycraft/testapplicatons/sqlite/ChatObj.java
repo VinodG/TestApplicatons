@@ -23,6 +23,10 @@ public class ChatObj implements Serializable {
     public int status= 1;
     public   static int POSTED =   1;
     public  static int  NOT_POSTED= 0;
+    //for voice recording
+    public String file_url = "";
+    public String file_type = "";
+    public String file_duration = "";
 
     @Override
     public boolean equals(Object o) {

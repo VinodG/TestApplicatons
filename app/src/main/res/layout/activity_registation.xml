@@ -12,7 +12,13 @@
         android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <!--<Button-->
+        <!--android:id="@+id/btnRegistration"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Register"/>-->
     <Button
+        android:id="@+id/btnRegistration"
         android:onClick="onClkRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

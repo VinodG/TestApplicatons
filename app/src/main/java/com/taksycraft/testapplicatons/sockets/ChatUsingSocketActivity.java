@@ -81,7 +81,7 @@ public class ChatUsingSocketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         SocketUtils.setContext(ChatUsingSocketActivity.this);
-        database = new DbHelper(this, "chatdb.sqlite", null, 2);
+        database = new DbHelper(this, "chatdb.sqlite", null, 3);
         etInput = (EditText) findViewById(R.id.etInput);
         tvOutput = (TextView) findViewById(R.id.tvCurrentUserName);
         tvTyping = (TextView) findViewById(R.id.tvTyping);
@@ -421,7 +421,9 @@ public class ChatUsingSocketActivity extends AppCompatActivity {
                 jsonObject.putOpt("to", TO_ID);
                 jsonObject.putOpt("message", str);
                 jsonObject.putOpt("sent_at", CalendarUtils.getCurrentDateAndtime());
-//                jsonObject.putOpt("message_id", UUID.randomUUID().toString());
+                jsonObject.putOpt("file_url","https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" );
+                jsonObject.putOpt("file_duration","373000" );
+                jsonObject.putOpt("file_type", "mp3");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -468,6 +470,9 @@ public class ChatUsingSocketActivity extends AppCompatActivity {
                         jsonObject.putOpt("to", TO_ID);
                         jsonObject.putOpt("message", obj.message);
                         jsonObject.putOpt("sent_at", obj.sent_at);
+                        jsonObject.putOpt("file_url", obj.file_url);
+                        jsonObject.putOpt("file_type", obj.file_type);
+                        jsonObject.putOpt("file_duration", obj.file_duration);
 //                        jsonObject.putOpt("message_id", obj._id);
                     } catch (JSONException e) {
                         e.printStackTrace();

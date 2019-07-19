@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -51,7 +52,7 @@ public class FriendsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
-        database = new DbHelper(this, "chatdb.sqlite", null, 2);
+        database = new DbHelper(this, "chatdb.sqlite", null, 3);
 
 //        if(getIntent()!=null && getIntent().hasExtra("user"))
 //            userDO =(UserDO) getIntent().getExtras().get("user");
@@ -99,13 +100,17 @@ public class FriendsListActivity extends AppCompatActivity {
     private void setList() {
         rvUsers = (RecyclerView) findViewById(R.id.rvUsers);
         rvUsers.setLayoutManager(new WrapContentLinearLayoutManager(this));
-        adapter = new CommonAdapter(null, new CommonAdapter.ListListener() {
+        vec = database.getFriendsList("");
+        adapter = new CommonAdapter(vec, new CommonAdapter.ListListener() {
             @Override
             public void onBindViewHolder(CommonAdapter.CommonHolder holder, int position) {
 
                 try {
                     UserDO obj = vec.get(position);
-                    holder.getTextView().setText(obj.getRoom_no());
+                    if(!TextUtils.isEmpty(obj.getRoom_no()))
+                        holder.getTextView().setText(obj.getRoom_no());
+                    else
+                        holder.getTextView().setText(obj.getName());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -115,7 +120,12 @@ public class FriendsListActivity extends AppCompatActivity {
             public void onItemClick(Object object, int position) {
                 intent = new Intent(FriendsListActivity.this, ChatUsingSocketActivity.class);
                 intent.putExtra("current_user", userDO);
-                ((UserDO) object).setName( ((UserDO) object).getRoom_no());
+                if(!TextUtils.isEmpty(((UserDO) object).getRoom_no()))
+                    ((UserDO) object).setName(((UserDO) object).getRoom_no());
+                else
+                    ((UserDO) object).setName(((UserDO) object).getName());
+//                ((UserDO) object).setName( ((UserDO) object).getRoom_no());
+                ((UserDO) object).setName( vec.get(position).getName());
                 intent.putExtra("selected_user", (UserDO) object);
                 etInput.setText(((UserDO) object).getName() + "");
                 toast("item is clicked on position " + position);
@@ -123,11 +133,6 @@ public class FriendsListActivity extends AppCompatActivity {
             }
         });
         rvUsers.setAdapter(adapter);
-//        if (!isInternetAvailable()) {
-//            vec = database.getFriendsList(userDO.getCustomer_id());
-//            adapter.refresh(vec);
-//        }
-
     }
 
     private void setConnection() {
