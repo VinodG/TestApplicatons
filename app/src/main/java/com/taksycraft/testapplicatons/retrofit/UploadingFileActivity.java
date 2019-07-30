@@ -265,7 +265,7 @@ public class UploadingFileActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            new Upload().execute();
+//            new Upload().execute();
             try {
                 HashMap<String, String> data = new HashMap<>();
 //                selectedPath =FilesUtils.getImageFolderPath()+"f7f2e2fe2d18ab28ba7e45ad8a1cb5ff641b9a85.png";

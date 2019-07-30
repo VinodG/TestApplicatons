@@ -98,6 +98,16 @@ public class Fragment2 extends Fragment {
         super.onDetach();
         Log.e(TAG,"onDetach" );
     }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName() );
+    }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName() );
+    }
 
 }

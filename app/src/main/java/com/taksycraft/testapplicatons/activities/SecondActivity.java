@@ -56,4 +56,15 @@ public class SecondActivity extends AppCompatActivity {
         super.onPause();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
     }
+    @Override
+    public void onSaveInstanceState(Bundle outState ) {
+        super.onSaveInstanceState(outState );
+        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
+    }
 }

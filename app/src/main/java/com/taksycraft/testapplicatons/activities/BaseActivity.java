@@ -1,27 +1,25 @@
 package com.taksycraft.testapplicatons.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.taksycraft.testapplicatons.R;
 
-public class FirstActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
-    private   String TAG = FirstActivity.class.getSimpleName();
+    public static String TAG = BaseActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
         setContentView(R.layout.activity_first);
-        setTitle("FirstActivity");
-    }
 
+    }
 
     @Override
     protected void onDestroy() {
@@ -58,6 +56,7 @@ public class FirstActivity extends AppCompatActivity {
         super.onPause();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
     }
+
     @Override
     public void onSaveInstanceState(Bundle outState ) {
         super.onSaveInstanceState(outState );
@@ -67,15 +66,6 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
-    }
-    public void onNext(View view) {
-        startActivity(new Intent(FirstActivity.this,SecondActivity.class));
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
     }
 }
