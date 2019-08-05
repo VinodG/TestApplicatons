@@ -64,6 +64,23 @@ public class ThreadsActivity extends AppCompatActivity {
             }
         }
     }
+    private void startNewThread() {
+        tpe.execute(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0 ;i<100;i++)
+                {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e( TAG, Thread.currentThread().getId()+"  "+i);
+
+                }
+            }
+        });
+    }
 
     @Override
     protected void onDestroy() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taksycraft.testapplicatons">
-
     <!-- calling an app -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -24,28 +23,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".backgroundtask.ForegroundService"
-            android:enabled="true"
-            android:exported="true"></service>
-
-        <activity android:name=".parsing.ParsingTestingActivity"></activity>
-        <activity android:name=".retrofit.UploadingFileActivity" />
-        <activity android:name=".activities.SecondActivity" />
-        <activity android:name=".activities.FirstActivity"></activity>
-        <activity android:name=".backgroundtask.ThreadsActivity"></activity>
-        <activity android:name=".backgroundtask.BackgroundtakTestingActivity">
+        <activity android:name=".loaders.LoadersActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
+
+        <service
+            android:name=".backgroundtask.MyIntentService"
+            android:exported="false" />
+        <service
+            android:name=".backgroundtask.InteractiveService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".backgroundtask.ForegroundService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".parsing.ParsingTestingActivity" />
+        <activity android:name=".retrofit.UploadingFileActivity" />
+        <activity android:name=".activities.SecondActivity" />
+        <activity android:name=".activities.FirstActivity" />
+        <activity android:name=".backgroundtask.ThreadsActivity" />
+        <activity android:name=".backgroundtask.BackgroundtakTestingActivity"></activity>
+        <activity android:name=".schedulers.jobschedulers.JobSchedulerApp">
+
+        </activity>
         <activity android:name=".sqlite.SqliteActivity" />
         <activity android:name=".customviews.ViewsTestingActivity" />
         <activity android:name=".recyclerview.DiffUtilsActivity" />
-        <activity android:name=".sockets.FriendsListActivity"></activity>
+        <activity android:name=".sockets.FriendsListActivity" />
         <activity
             android:name=".sockets.ChatUsingSocketActivity"
             android:screenOrientation="portrait" />
@@ -128,7 +138,7 @@
             android:name=".customviews.BackgroundDrawableTesingActivity"
             android:lockTaskMode="always" />
         <activity android:name=".fragments.MainFragmentActivity" />
-        <activity android:name=".AsyncTaskTesting" />
+        <activity android:name=".backgroundtask.AsyncTaskTesting"></activity>
         <activity android:name=".TimerActvity" />
         <activity android:name=".appcrash.apprestart.AppRestartOnCrashActivity" />
 

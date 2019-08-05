@@ -1,4 +1,4 @@
-package com.taksycraft.testapplicatons;
+package com.taksycraft.testapplicatons.backgroundtask;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -6,12 +6,14 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.taksycraft.testapplicatons.R;
+
 public class AsyncTaskTesting extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_fragment1);
         for (int i = 0 ;i<4;i++)
             new MyAsyncTask().execute();
     }
@@ -23,11 +25,11 @@ public class AsyncTaskTesting extends AppCompatActivity {
             for (int i = 0;i<10;i++)
             {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.e("AsyncTask",Thread.currentThread().getId()+"");
+                Log.e("AsyncTask",Thread.currentThread().getId()+" "+i);
             }
             return null;
         }

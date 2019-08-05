@@ -11,6 +11,9 @@ import android.graphics.Color;
 import androidx.core.app.NotificationCompat;
 
 import com.taksycraft.testapplicatons.R;
+import com.taksycraft.testapplicatons.common.CalendarUtils;
+
+import java.util.Calendar;
 
 public class NotificationJobService extends JobService {
     NotificationManager mNotifyManager;
@@ -26,7 +29,7 @@ public class NotificationJobService extends JobService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder
                 (this, PRIMARY_CHANNEL_ID)
                 .setContentTitle("Job Service")
-                .setContentText("Your Job ran to completion!")
+                .setContentText("Your Job ran to completion! "+ Calendar.getInstance().getTime().toString())
                 .setContentIntent(contentPendingIntent)
                 .setSmallIcon(R.drawable.icn_popup_close)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -34,7 +37,8 @@ public class NotificationJobService extends JobService {
                 .setAutoCancel(true);
 
         mNotifyManager.notify(0, builder.build());
-        return false;
+        Util.scheduleJob(getApplicationContext());
+        return true;
     }
 
     @Override

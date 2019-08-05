@@ -32,6 +32,12 @@ public class JobSchedulerApp extends AppCompatActivity {
     }
 
     public void scheduleJob(View view) {
+//        anotherWayToSchedule();
+        Util.scheduleJob(getApplicationContext());
+
+    }
+
+    private void anotherWayToSchedule() {
         RadioGroup networkOptions = findViewById(R.id.networkOptions);
         int selectedNetworkID = networkOptions.getCheckedRadioButtonId();
         int selectedNetworkOption = JobInfo.NETWORK_TYPE_NONE;
@@ -62,7 +68,7 @@ public class JobSchedulerApp extends AppCompatActivity {
 //                    .setRequiresDeviceIdle(mDeviceIdleSwitch.isChecked())
 //                    .setRequiresCharging(mDeviceChargingSwitch.isChecked())
 //                    .setOverrideDeadline(15*1000)
-            .setPeriodic(15*1000)
+                    .setPeriodic(15*1000)
             ;
             JobInfo myJobInfo = builder.build();
             mScheduler.schedule(myJobInfo);
@@ -72,11 +78,6 @@ public class JobSchedulerApp extends AppCompatActivity {
             Toast.makeText(this, "Please set at least one constraint",
                     Toast.LENGTH_SHORT).show();
         }
-
-//        JobInfo myJobInfo = builder.build();
-//        mScheduler.schedule(myJobInfo);
-//        Toast.makeText(this, "Job Scheduled, job will run when " +
-//                "the constraints are met.", Toast.LENGTH_SHORT).show();
     }
 
     public void cancelJobs(View view) {

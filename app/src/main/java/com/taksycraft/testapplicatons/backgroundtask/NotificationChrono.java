@@ -91,4 +91,9 @@ public class NotificationChrono {
         builder.setContentTitle("title ");
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
+    public static void update(int NOTIFICATION_ID,String title,  NotificationManager notificationManager)
+    {
+        builder.setContentTitle(title+"");
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
 }

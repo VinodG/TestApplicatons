@@ -4,14 +4,23 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -32,6 +41,8 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
     private String TAG= BackgroundtakTestingActivity.class.getSimpleName();
     private int count=1;
     private Intent intentService;
+    private Messenger serviceMessanger = null;
+    private Messenger activityMessagener = new Messenger(new ActivityHandler());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +51,35 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
         tv= (TextView)findViewById(R.id.tv);
         Log.e( TAG, "Availble processors " + Runtime.getRuntime().availableProcessors()+"  " );
         tpe = Executors.newFixedThreadPool(2);
-//        startAsyncTask();
 
-
-    }
-
-
-
-    private void startAsyncTask() {
-        for (int i = 0 ;i<4;i++)
-            new  MyAsyncTask().execute(null,null);
     }
 
     public void onClkStart(View view) {
-//        startNewThread();
-        startForeGroundServiceForOnlyOREOorAboveDevices();
+//        startForeGroundServiceForOnlyOREOorAboveDevices();
+//        startInteractiveService();
+        startIntentService();
+    }
 
+    private void startInteractiveService() {
+        intentService = new Intent(this, InteractiveService.class);
+        bindService(intentService, new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                log(" onServiceConnected");
+                serviceMessanger  = new Messenger(service);
+            }
 
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                log(" onServiceDisconnected");
+                serviceMessanger = null;
+
+            }
+        },BIND_AUTO_CREATE);
+    }
+    private void startIntentService() {
+        intentService = new Intent(this, MyIntentService.class);
+        startService( intentService);
     }
 
     private void startForeGroundServiceForOnlyOREOorAboveDevices() {
@@ -64,69 +87,37 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
         ContextCompat.startForegroundService(this,intentService);
     }
 
-    private void startNewThread() {
-        tpe.execute(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0 ;i<100;i++)
-                {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e( TAG, Thread.currentThread().getId()+"  "+i);
 
-                }
-            }
-        });
-    }
 
     public void onClkStop(View view) {
         stopService(intentService);
     }
 
-    public class MyRunnable implements Runnable  {
-        private   String str="MyRunnable";
-        public MyRunnable(String str) {
-            this.str =str;
+    public void onClkSend(View view) {
+        EditText etInput = (EditText) findViewById(R.id.etInput);
+        Message msg = Message.obtain();
+        msg.replyTo = activityMessagener;
+        Bundle bundle = new Bundle();
+        bundle.putString("MyString", etInput.getText().toString());
+        msg.setData(bundle);
+        try {
+            serviceMessanger.send(msg);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
+        etInput.setText("");
 
-        @Override
-        public void run() {
-            for (int i = 0 ;i<100;i++)
-            {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Log.e( TAG, Thread.currentThread().getName()+str );
-            }
-        }
     }
-    class MyAsyncTask extends AsyncTask
-    {
 
+    class ActivityHandler extends Handler {
         @Override
-        protected Object doInBackground(Object[] objects) {
-            for (int i = 0;i<100;i++)
-            {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Log.e("AsyncTask",Thread.currentThread().getId()+"");
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            Log.e("AsyncTask", "onPostExecute");
-
+        public void handleMessage(Message msg) {
+            log();
+            super.handleMessage(msg);
+            log("handleMessage in Activity" );
+            Bundle data = msg.getData();
+            String dataString = data.getString("timestamp");
+            tv.setText(dataString+"");
         }
     }
 
@@ -146,12 +137,14 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
+        startInteractiveService();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
+        stopService(intentService);
     }
 
     @Override
@@ -176,4 +169,14 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
     }
+    private void log(String str)
+    {
+        Log.e(TAG,new Exception().getStackTrace()[1].getMethodName()+"->"+str );
+    }
+    private void log()
+    {
+        Log.e(TAG,new Exception().getStackTrace()[1].getMethodName());
+    }
+
+
 }
