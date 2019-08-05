@@ -12,7 +12,8 @@ import com.taksycraft.testapplicatons.R;
 
 public class FirstActivity extends AppCompatActivity {
 
-    private   String TAG = FirstActivity.class.getSimpleName();
+//    private   String TAG = FirstActivity.class.getSimpleName();
+    private   String TAG = "FirstActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
