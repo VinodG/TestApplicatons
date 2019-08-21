@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.taksycraft.testapplicatons.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.taksycraft.testapplicatons.R;
 
 public class AppRestartOnCrashActivity extends AppCompatActivity {
 //    https://medium.com/@ssaurel/how-to-auto-restart-an-android-application-after-a-crash-or-a-force-close-error-1a361677c0ce

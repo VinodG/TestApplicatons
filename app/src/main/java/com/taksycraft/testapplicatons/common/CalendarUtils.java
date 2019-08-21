@@ -2,7 +2,6 @@ package com.taksycraft.testapplicatons.common;
 
 import android.text.TextUtils;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

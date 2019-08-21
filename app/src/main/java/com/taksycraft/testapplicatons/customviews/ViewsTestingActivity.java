@@ -1,11 +1,11 @@
 package com.taksycraft.testapplicatons.customviews;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AnalogClock;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.BitmapUtils;

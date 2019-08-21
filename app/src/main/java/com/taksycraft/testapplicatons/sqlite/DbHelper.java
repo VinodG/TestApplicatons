@@ -15,7 +15,6 @@ import com.taksycraft.testapplicatons.retrofit.DBClient;
 import com.taksycraft.testapplicatons.sockets.SyncDO;
 import com.taksycraft.testapplicatons.sockets.UserDO;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 

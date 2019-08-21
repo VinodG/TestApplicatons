@@ -18,9 +18,6 @@ import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguag
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
 import com.taksycraft.testapplicatons.R;
-import com.taksycraft.testapplicatons.firebasedatabase.ChatActivity;
-
-import java.util.Locale;
 
 public class TraslationActivitiy extends AppCompatActivity {
 

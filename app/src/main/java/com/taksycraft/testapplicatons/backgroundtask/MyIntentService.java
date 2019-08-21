@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
@@ -30,7 +29,7 @@ public class MyIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 //        makeForegroundService();
-        for (int i = 0 ;i<5 ;i++)
+        for (int i = 0 ;i<15 ;i++)
         {
             try {
                 Thread.sleep(1000);

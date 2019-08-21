@@ -1,15 +1,8 @@
 package com.taksycraft.testapplicatons.backgroundtask;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -20,17 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.taksycraft.testapplicatons.R;
-import com.taksycraft.testapplicatons.activities.FirstActivity;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,7 +26,7 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
 
     private TextView tv;
     private ExecutorService tpe;
-    private String TAG= BackgroundtakTestingActivity.class.getSimpleName();
+    private String TAG= getClass().getSimpleName();
     private int count=1;
     private Intent intentService;
     private Messenger serviceMessanger = null;
@@ -55,9 +43,9 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
     }
 
     public void onClkStart(View view) {
-//        startForeGroundServiceForOnlyOREOorAboveDevices();
+        startForeGroundServiceForOnlyOREOorAboveDevices();
 //        startInteractiveService();
-        startIntentService();
+//        startIntentService();
     }
 
     private void startInteractiveService() {
@@ -137,14 +125,14 @@ public class BackgroundtakTestingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
-        startInteractiveService();
+//        startInteractiveService();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
-        stopService(intentService);
+//        stopService(intentService);
     }
 
     @Override

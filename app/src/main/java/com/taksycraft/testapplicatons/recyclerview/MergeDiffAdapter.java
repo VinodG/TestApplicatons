@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.NameDO;
 
-import java.util.List;
 import java.util.Vector;
 
 //https://www.youtube.com/watch?v=xPPMygGxiEo

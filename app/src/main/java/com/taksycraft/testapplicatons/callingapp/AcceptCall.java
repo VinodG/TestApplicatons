@@ -1,7 +1,5 @@
 package com.taksycraft.testapplicatons.callingapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.taksycraft.testapplicatons.R;
 

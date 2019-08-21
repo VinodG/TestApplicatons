@@ -2,7 +2,6 @@ package com.taksycraft.testapplicatons.common;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;

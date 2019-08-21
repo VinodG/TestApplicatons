@@ -2,10 +2,9 @@ package com.taksycraft.testapplicatons.firebasedatabase;
 
 import com.google.firebase.database.ServerValue;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 
-public  class ChatDO {
+public  class ChatDO implements Serializable {
     public String key = ""; //key to update an object
     public String msg = ""; //message to be delivered
     public String imageUrl = "";

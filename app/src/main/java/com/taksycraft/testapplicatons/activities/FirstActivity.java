@@ -1,19 +1,21 @@
 package com.taksycraft.testapplicatons.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.taksycraft.testapplicatons.R;
+import com.taksycraft.testapplicatons.firebasedatabase.ChatDO;
 
 public class FirstActivity extends AppCompatActivity {
 
 //    private   String TAG = FirstActivity.class.getSimpleName();
     private   String TAG = "FirstActivity";
+    private ChatDO object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class FirstActivity extends AppCompatActivity {
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
         setContentView(R.layout.activity_first);
         setTitle("FirstActivity");
+        object = new ChatDO();
+        object.msg= "FirstActivity";
     }
 
 
@@ -51,7 +55,7 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
+        Log.e(TAG,new Exception().getStackTrace()[0].getMethodName()+" intent obj -> "+object.msg);
     }
 
     @Override
@@ -71,7 +75,10 @@ public class FirstActivity extends AppCompatActivity {
         Log.e(TAG,new Exception().getStackTrace()[0].getMethodName());
     }
     public void onNext(View view) {
-        startActivity(new Intent(FirstActivity.this,SecondActivity.class));
+        Intent intent  = new Intent(FirstActivity.this,SecondActivity.class);
+
+        intent.putExtra("object",object);
+        startActivity(intent);
     }
 
     @Override

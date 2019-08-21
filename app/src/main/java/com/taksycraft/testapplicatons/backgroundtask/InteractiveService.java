@@ -11,7 +11,6 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
-
 import java.util.Calendar;
 
 //https://www.truiton.com/2015/01/android-bind-service-using-messenger/
@@ -27,6 +26,7 @@ public class InteractiveService extends Service {
         log();
         return interactiveMessanger.getBinder();
     }
+
     class IncomingHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {

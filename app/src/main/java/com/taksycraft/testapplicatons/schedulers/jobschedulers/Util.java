@@ -4,9 +4,6 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.widget.Toast;
-
-import static android.content.Context.JOB_SCHEDULER_SERVICE;
 //https://www.vogella.com/tutorials/AndroidTaskScheduling/article.html
 public class Util {
     public static   void scheduleJob(Context context )

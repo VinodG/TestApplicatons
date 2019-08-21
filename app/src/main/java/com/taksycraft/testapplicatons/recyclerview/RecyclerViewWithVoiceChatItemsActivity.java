@@ -20,12 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.CalendarUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
 
 public class RecyclerViewWithVoiceChatItemsActivity extends AppCompatActivity {
 

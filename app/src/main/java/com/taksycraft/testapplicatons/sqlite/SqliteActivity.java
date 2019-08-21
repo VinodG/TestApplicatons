@@ -1,11 +1,11 @@
 package com.taksycraft.testapplicatons.sqlite;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.CalendarUtils;

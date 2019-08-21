@@ -2,6 +2,7 @@ package com.taksycraft.testapplicatons;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.taksycraft.testapplicatons.retrofit.DBClient;
 
@@ -12,7 +13,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        DBClient client = new DBClient(getApplicationContext());
+        Log.e("MyApplicatioiin", "onCreate");
+//        DBClient client = new DBClient(getApplicationContext());
         new DBClient();
 
     }

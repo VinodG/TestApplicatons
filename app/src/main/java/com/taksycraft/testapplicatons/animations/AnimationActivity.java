@@ -1,12 +1,5 @@
 package com.taksycraft.testapplicatons.animations;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.dynamicanimation.animation.DynamicAnimation;
-import androidx.dynamicanimation.animation.SpringAnimation;
-import androidx.dynamicanimation.animation.SpringForce;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,12 +17,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.CommonAdapter;
 
 import java.util.Vector;
 
-import static androidx.dynamicanimation.animation.SpringAnimation.*;
+import static androidx.dynamicanimation.animation.SpringAnimation.TRANSLATION_Y;
+import static androidx.dynamicanimation.animation.SpringAnimation.X;
+import static androidx.dynamicanimation.animation.SpringAnimation.Y;
 
 public class AnimationActivity extends AppCompatActivity {
 

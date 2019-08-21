@@ -1,7 +1,5 @@
 package com.taksycraft.testapplicatons.contentprovider;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.taksycraft.testapplicatons.R;
 

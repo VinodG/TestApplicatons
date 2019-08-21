@@ -7,7 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.taksycraft.testapplicatons.R;
+
 import java.util.Vector;
 
 public class CommonAdapter  extends  RecyclerView.Adapter<CommonAdapter.CommonHolder>

@@ -8,14 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.taksycraft.testapplicatons.R;
-import com.taksycraft.testapplicatons.common.CommonAdapter;
 import com.taksycraft.testapplicatons.common.NameDO;
 
 import java.util.Vector;

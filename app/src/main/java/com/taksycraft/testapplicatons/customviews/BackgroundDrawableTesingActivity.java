@@ -16,9 +16,9 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.taksycraft.testapplicatons.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.taksycraft.testapplicatons.R;
 
 public class BackgroundDrawableTesingActivity extends AppCompatActivity {
 

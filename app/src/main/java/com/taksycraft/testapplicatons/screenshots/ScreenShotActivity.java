@@ -1,9 +1,9 @@
 package com.taksycraft.testapplicatons.screenshots;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.taksycraft.testapplicatons.R;
 

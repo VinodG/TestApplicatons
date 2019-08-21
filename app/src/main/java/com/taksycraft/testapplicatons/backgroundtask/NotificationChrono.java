@@ -9,8 +9,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.core.app.NotificationCompat;
-
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.activities.FirstActivity;
 

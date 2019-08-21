@@ -1,9 +1,9 @@
 package com.taksycraft.testapplicatons.parsing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.taksycraft.testapplicatons.R;

@@ -1,13 +1,14 @@
 package com.taksycraft.testapplicatons.camera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.taksycraft.testapplicatons.R;
 
 public class CameraActivity extends AppCompatActivity {

@@ -12,20 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.util.StringUtil;
 
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.CalendarUtils;
-import com.taksycraft.testapplicatons.common.NameDO;
 import com.taksycraft.testapplicatons.customviews.BackgroundDrawable;
-import com.taksycraft.testapplicatons.recyclerview.CommonDiffAdapter;
-import com.taksycraft.testapplicatons.recyclerview.TriggerRecyclerViewItemsActivity;
 import com.taksycraft.testapplicatons.sqlite.ChatObj;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 

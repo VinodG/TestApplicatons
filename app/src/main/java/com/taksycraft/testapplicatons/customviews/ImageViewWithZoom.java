@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.taksycraft.testapplicatons.R;
 //for image zooming - https://www.vogella.com/tutorials/AndroidTouch/article.html#singletouch

@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-//https://github.com/ShadowNinja/CallRecorder.git
+//from nexit company -- > https://github.com/ShadowNinja/CallRecorder.git
 public class PhoneListenerBroad extends BroadcastReceiver {
 
     Context c;

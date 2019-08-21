@@ -3,11 +3,7 @@ package com.taksycraft.testapplicatons.animations;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
-import android.widget.LinearLayout;
-
-import androidx.dynamicanimation.animation.DynamicAnimation;
 
 //https://stackoverflow.com/questions/8140571/resizing-layouts-programmatically-as-animation
 /**

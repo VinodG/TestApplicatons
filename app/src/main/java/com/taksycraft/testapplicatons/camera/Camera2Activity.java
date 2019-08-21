@@ -1,8 +1,5 @@
 package com.taksycraft.testapplicatons.camera;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -25,6 +22,9 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.taksycraft.testapplicatons.R;
 
 import java.io.File;
@@ -34,7 +34,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
-import java.util.zip.ZipInputStream;
 
 public class Camera2Activity extends AppCompatActivity {
 
@@ -104,7 +103,7 @@ public class Camera2Activity extends AppCompatActivity {
         backgroundThread.start();
         backgroundHandler = new Handler(backgroundThread.getLooper());
     }
-    CameraDevice.StateCallback stateCallback  = new CameraDevice.StateCallback()
+    CameraDevice.StateCallback  stateCallback  = new CameraDevice.StateCallback()
     {
         @Override
         public void onOpened(CameraDevice cameraDevice)  {

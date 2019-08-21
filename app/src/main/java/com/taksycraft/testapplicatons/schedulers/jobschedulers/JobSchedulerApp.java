@@ -1,7 +1,5 @@
 package com.taksycraft.testapplicatons.schedulers.jobschedulers;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.taksycraft.testapplicatons.R;
 

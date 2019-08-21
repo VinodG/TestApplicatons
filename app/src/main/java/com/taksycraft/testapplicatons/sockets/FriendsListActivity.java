@@ -32,7 +32,6 @@ import io.socket.emitter.Emitter;
 
 import static com.taksycraft.testapplicatons.sockets.ChatUsingSocketActivity.IS_NETWORK_AVAILABLE;
 import static com.taksycraft.testapplicatons.sockets.SocketUtils.LISTENER_USER_LIST;
-import static com.taksycraft.testapplicatons.sockets.SocketUtils.USER_LIST;
 
 public class FriendsListActivity extends AppCompatActivity {
     private static final String URL = "http://192.168.0.121:3000";

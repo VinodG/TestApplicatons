@@ -1,16 +1,14 @@
 package com.taksycraft.testapplicatons.sockets;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.taksycraft.testapplicatons.R;
@@ -19,12 +17,7 @@ import com.taksycraft.testapplicatons.common.PreferenceUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URISyntaxException;
-
 import io.socket.client.Ack;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String URL = "http://192.168.0.121:3000";
