@@ -23,16 +23,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LauncherAppTheme">
-        <activity android:name=".activities.LauncherActivity">
+        <activity android:name=".assetsdemo.UnzipActivity">
             <intent-filter>
-                <!--<category android:name="android.intent.category.HOME"/>-->
-                <!--<category android:name="android.intent.category.DEFAULT"/>-->
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".architecture.FormActivity">
+        <activity android:name=".activities.LauncherActivity">
+
+            <!-- <intent-filter> -->
+            <!-- &lt;!&ndash;<category android:name="android.intent.category.HOME"/>&ndash;&gt; -->
+            <!-- &lt;!&ndash;<category android:name="android.intent.category.DEFAULT"/>&ndash;&gt; -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".architecture.FormActivity"></activity>
         <activity android:name=".loaders.LoadersActivity" />
 
         <service
@@ -52,7 +59,7 @@
         <activity android:name=".activities.SecondActivity" />
         <activity android:name=".activities.FirstActivity" />
         <activity android:name=".backgroundtask.ThreadsActivity" />
-        <activity android:name=".backgroundtask.BackgroundtakTestingActivity"></activity>
+        <activity android:name=".backgroundtask.BackgroundtakTestingActivity" />
         <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
         <activity android:name=".sqlite.SqliteActivity" />
         <activity android:name=".customviews.ViewsTestingActivity" />
@@ -140,7 +147,7 @@
             android:name=".customviews.BackgroundDrawableTesingActivity"
             android:lockTaskMode="always" />
         <activity android:name=".fragments.MainFragmentActivity" />
-        <activity android:name=".backgroundtask.AsyncTaskTesting" />
+        <activity android:name=".backgroundtask.AsyncTaskTesting"></activity>
         <activity android:name=".TimerActvity" />
         <activity android:name=".appcrash.apprestart.AppRestartOnCrashActivity" />
 
