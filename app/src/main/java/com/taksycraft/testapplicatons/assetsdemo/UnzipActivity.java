@@ -50,7 +50,7 @@ public class UnzipActivity extends AppCompatActivity {
                 String filename = ze.getName();
                 FileOutputStream fout = new FileOutputStream(path + "modified");
 
-                // reading and writing
+                // reading and writin
                 while((count = zis.read(buffer)) != -1)
                 {
                     baos.write(buffer, 0, count);
