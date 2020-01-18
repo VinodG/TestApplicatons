@@ -5,7 +5,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CollectionsClass {
@@ -46,6 +48,20 @@ public class CollectionsClass {
         public int hashCode() {
             System.out.println("hashcode is called ");
             return id+"".hashCode()+name.hashCode()+sex.hashCode();
+        }
+    }
+
+    private static void removingDuplicateElements() {
+        Integer [] arr =  new Integer[] {1,4,7,4,7,1,2,1,2,2,3,2,4,4 };
+        List list = Arrays.asList(arr);
+        printList(list);
+        LinkedHashSet set = new LinkedHashSet(list);
+        System.out.println("after removing duplicate elements");
+        printList(new ArrayList<>(set));
+    }
+    private static void printList(List list) {
+        for (int i=0;i<list.size();i++ ){
+            System.out.println(list.get(i)+"");
         }
     }
 }
