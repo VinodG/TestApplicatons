@@ -21,10 +21,7 @@ public class FooChal {
         for (int i = 0; i < al.size(); i++) {
             Integer key = al.get(i);
             Integer value = hm.get(key);
-            if (value == null) {
-                hm.put(key, 1);
-            } else
-                hm.put(key, value + 1);
+            hm.put(key, value == null ? 1 : value + 1);
         }
         printLinkedHashMap(hm);
         List<Integer> keys = new ArrayList(hm.keySet());
