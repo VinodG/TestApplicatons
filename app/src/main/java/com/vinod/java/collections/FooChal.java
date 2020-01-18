@@ -5,12 +5,21 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+/*
+Write a function called solution(data, n) that takes in a list of less than 100 integers and a
+number n, and returns that same list but with all of the numbers that occur more than n times
+ removed entirely. The returned list should retain the same ordering as the original list - you don't
+  want to mix up those carefully-planned shift rotations! For instance, if data was [5, 10, 15, 10, 7]
+  and n was 1, solution(data, n) would return the list [5, 15, 7] because 10 occurs twice, and thus
+   was removed from the list entirely.
+* */
 
 public class FooChal {
     public static void main(String args[]) {
         Integer[] arr = new Integer[]{1, 4, 7, 3, 2, 4, 4, 3, 7, 1, 2, 1, 2, 2, 3, 2, 4, 4};
+        int n = 3;
 //        Integer[] arr = new Integer[]{1,2,2,3,3,3,4,5,5};
-        List<Integer> alUpdated = solution(Arrays.asList(arr), 3);
+        List<Integer> alUpdated = solution(Arrays.asList(arr), n);
         System.out.println("after removing elements(updated list)");
         for (Integer val : alUpdated)
             System.out.println(val);
