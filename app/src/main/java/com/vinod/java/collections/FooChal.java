@@ -16,9 +16,9 @@ number n, and returns that same list but with all of the numbers that occur more
 
 public class FooChal {
     public static void main(String args[]) {
-        Integer[] arr = new Integer[]{1, 4, 7, 3, 2, 4, 4, 3, 7, 1, 2, 1, 2, 2, 3, 2, 4, 4};
-        int n = 3;
-//        Integer[] arr = new Integer[]{1,2,2,3,3,3,4,5,5};
+        // Integer[] arr = new Integer[]{1, 4, 7, 3, 2, 4, 4, 3, 7, 1, 2, 1, 2, 2, 3, 2, 4, 4};
+        Integer[] arr = new Integer[]{3,1,2,4,3,1,2,3,5,6,6};
+        int n = 2; 
         List<Integer> alUpdated = solution(Arrays.asList(arr), n);
         System.out.println("after removing elements(updated list)");
         for (Integer val : alUpdated)
@@ -31,22 +31,13 @@ public class FooChal {
             Integer key = al.get(i);
             Integer value = hm.get(key);
             hm.put(key, value == null ? 1 : value + 1);
-        }
-        printLinkedHashMap(hm);
+        } 
         List<Integer> keys = new ArrayList(hm.keySet());
         List<Integer> listUpdated = new ArrayList<>();
-        for (Integer key : keys) {
-            if (hm.get(key) > k)
-                hm.remove(key);
-            else
-                listUpdated.add(key);
+        for (Integer key : al) {
+            if(hm.get(key) <= k)
+            listUpdated.add(key);
         }
         return listUpdated;
-    }
-
-    private static void printLinkedHashMap(LinkedHashMap<Integer, Integer> map) {
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " -> is happened " + entry.getValue() + " times");
-        }
     }
 }
