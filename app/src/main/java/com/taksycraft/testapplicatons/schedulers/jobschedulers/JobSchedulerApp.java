@@ -28,7 +28,6 @@ public class JobSchedulerApp extends AppCompatActivity {
         mDeviceIdleSwitch = findViewById(R.id.idleSwitch);
         mDeviceChargingSwitch = findViewById(R.id.chargingSwitch);
 
-
     }
 
     public void scheduleJob(View view) {

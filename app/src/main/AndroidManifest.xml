@@ -22,13 +22,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/LauncherAppTheme">
+        android:theme="@style/AppTheme">
         <activity android:name=".assetsdemo.UnzipActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".activities.LauncherActivity">
 
@@ -70,7 +70,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".sockets.LoginActivity" />
         <activity android:name=".media.VoiceRecordingActivity" />
-        <activity android:name=".mlkit.TraslationActivitiy" />
+        <activity android:name=".mlkit.TraslationActivitiy" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".contentprovider.AnotherAppContentResolver" />
         <activity android:name=".sockets.SocketsActivity" />
         <activity
@@ -135,7 +140,9 @@
         <activity android:name=".camera.ImagePickerActivity" />
         <activity android:name=".recyclerview.RecyclerViewActivity" />
         <activity android:name=".recyclerview.RecyclerViewWithVoiceChatItemsActivity" />
-        <activity android:name=".firebasedatabase.RegistationActivity" />
+        <activity android:name=".firebasedatabase.RegistationActivity" >
+
+        </activity>
         <activity android:name=".firebasedatabase.UsersActivity" />
         <activity android:name=".firebasedatabase.ChatActivity" />
         <activity android:name=".animations.AnimationActivity" />

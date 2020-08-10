@@ -37,11 +37,16 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
 
     //firebase
-    implementation 'com.google.firebase:firebase-database:17.0.0'
+//    implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'com.google.firebase:firebase-storage:17.0.0'
 
-    implementation 'com.google.firebase:firebase-ml-natural-language:19.0.0'
-    implementation 'com.google.firebase:firebase-ml-natural-language-translate-model:19.0.0'
+//    implementation 'com.google.firebase:firebase-ml-natural-language:19.0.0'
+//    implementation 'com.google.firebase:firebase-ml-natural-language-translate-model:19.0.0'
+
+    implementation 'com.google.mlkit:translate:16.1.0'
+//    implementation 'com.google.mlkit:translate:17.0.0'
+
 
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
 //    retrofit

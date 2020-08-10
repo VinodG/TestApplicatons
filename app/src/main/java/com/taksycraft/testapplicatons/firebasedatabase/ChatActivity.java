@@ -53,13 +53,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
-import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.common.CalendarUtils;
 import com.taksycraft.testapplicatons.customviews.BackgroundDrawable;
@@ -100,7 +101,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button btnPickImage;
     private StorageReference storageRef;
     private String uploadedImagePath = "";
-    private FirebaseTranslator englishTeluguTranslator;
+    private Translator englishTeluguTranslator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,14 +139,15 @@ public class ChatActivity extends AppCompatActivity {
         list.add(currentUserName);
         Collections.sort(list);
         chatKeyNode = list.get(0) + "_TO_" + list.get(1);
-        FirebaseTranslatorOptions optionsForLang =
-                new FirebaseTranslatorOptions.Builder()
-                        .setSourceLanguage(FirebaseTranslateLanguage.EN)
-                        .setTargetLanguage(FirebaseTranslateLanguage.TE)
+        TranslatorOptions optionsForLang =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.TELUGU)
 //                        .setTargetLanguage(FirebaseTranslateLanguage.HI)
                         .build();
         englishTeluguTranslator =
-                FirebaseNaturalLanguage.getInstance().getTranslator(optionsForLang);
+                Translation.getClient(optionsForLang) ;
+        download();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child(chatKeyNode);
         Query chatQuery = myRef;//.limitToLast(50);
@@ -612,6 +614,50 @@ public class ChatActivity extends AppCompatActivity {
         } else {
             toast("Input should not be empty");
         }
+
+    }
+    private void download() {
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        englishTeluguTranslator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void v) {
+                                toast("Model is downloaded Successfully");
+                                // Model downloaded successfully. Okay to start translating.
+                                // (Set a flag, unhide the translation UI, etc.)
+                                englishTeluguTranslator.translate("What is your name")
+                                        .addOnSuccessListener(
+                                                new OnSuccessListener<String>() {
+                                                    @Override
+                                                    public void onSuccess(@NonNull String translatedText) {
+                                                        toast(translatedText + "");
+                                                        etInput.setText("");
+                                                    }
+                                                })
+                                        .addOnFailureListener(
+                                                new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        toast(e.getMessage());
+                                                    }
+                                                });
+
+                            }
+                        })
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                toast(e.getMessage());
+                                // Model couldn’t be downloaded or other internal error.
+                                // ...
+                            }
+                        });
+
 
     }
 
