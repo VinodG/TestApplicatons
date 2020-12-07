@@ -403,7 +403,6 @@ public class ChatActivity extends AppCompatActivity {
                 stream = getContentResolver().openInputStream(data.getData());
                 bitmap = BitmapFactory.decodeStream(stream);
 //                ivPreview .setImageBitmap(bitmap);
-
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

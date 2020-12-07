@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -29,4 +29,18 @@
         <item name="android:windowBackground">@android:color/transparent</item>
 
     </style>
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_out_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_dialog</item>
+    </style>
+    <style name="progressbarStyle2" parent="@style/Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:fontFamily">@font/droidkufi_regular</item>
+    </style>
+    <style name="DialogMenu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
 </resources>

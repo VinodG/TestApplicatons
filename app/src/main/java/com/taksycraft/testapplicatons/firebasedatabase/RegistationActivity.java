@@ -85,13 +85,9 @@ public class RegistationActivity extends AppCompatActivity {
                                         finish();
                                     }
                                 });
-                        }catch (Exception e)
-                        {
+                        }catch (Exception e) {
                             e.printStackTrace();
                         }
-
-
-
                     }
 
                     @Override

@@ -71,7 +71,7 @@ public class LauncherActivity extends AppCompatActivity {
             public ImageView img;
 
 
-            //This is the subclass ViewHolder which simply
+            //This is the subclass MyViewHolder which simply
             //'holds the views' for us to show on each row
             public ViewHolder(View itemView) {
                 super(itemView);
