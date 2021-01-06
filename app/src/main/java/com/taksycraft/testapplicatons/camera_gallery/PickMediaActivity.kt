@@ -25,13 +25,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import com.taksycraft.testapplicatons.R
 import com.theartofdev.edmodo.cropper.CropImage
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PickMediaActivity(var context: Activity, var listen: ( String,  Bitmap?, String?) -> Unit)  {
+class PickMediaActivity(var context: Activity,var fragment: Fragment?=null, var listen: ( String,  Bitmap?, String?) -> Unit)  {
     var app_preference: SharedPreferences? = null
     var selectedImageUri: Uri? = null
     var currentImageUri: Uri? = null
@@ -42,7 +43,7 @@ class PickMediaActivity(var context: Activity, var listen: ( String,  Bitmap?, S
 
     fun ShowDialogOptionForMidiaPick() {
         val isSDPresent = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
-        val item = 1
+        val item = 0
         if (item == 0) {
             if (isSDPresent) GetPhotoFromCamera() else Toast.makeText(context, "SD card is not available", Toast.LENGTH_SHORT).show()
         } else if (item == 1) {
@@ -74,8 +75,10 @@ class PickMediaActivity(var context: Activity, var listen: ( String,  Bitmap?, S
                     takePictureIntent.putExtra(
                             MediaStore.EXTRA_OUTPUT,
                             currentImageUri)
+                    fragment?.let {it.startActivityForResult(takePictureIntent, SELECT_FILE_CAMERA)  } ?:
                     activity.startActivityForResult(takePictureIntent,
                             SELECT_FILE_CAMERA)
+
                 }
             }
         } catch (ex: Exception) {
@@ -88,6 +91,7 @@ class PickMediaActivity(var context: Activity, var listen: ( String,  Bitmap?, S
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             val activity = context as Activity
+            fragment?.let { it.startActivityForResult(Intent.createChooser(intent, selectImageToUpload), SELECT_FILE_GALLERY) } ?:
             activity.startActivityForResult(Intent.createChooser(intent, selectImageToUpload), SELECT_FILE_GALLERY)
         } catch (ex: Exception) {
             ex.printStackTrace()
@@ -425,9 +429,14 @@ class PickMediaActivity(var context: Activity, var listen: ( String,  Bitmap?, S
 
     private fun performCrop(context: Activity, screenName: String, tempUri: Uri?) {
         try {
-            CropImage.activity(tempUri)
+            fragment?.let {
+                CropImage.activity(tempUri)
+                        .setAspectRatio(1, 1)
+                        .start(it.requireActivity(),it)
+            } ?: CropImage.activity(tempUri)
                     .setAspectRatio(1, 1)
                     .start(context)
+
         } catch (ex: Exception) {
             ex.printStackTrace()
         }

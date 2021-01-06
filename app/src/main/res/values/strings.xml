@@ -5,5 +5,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lengthy_string">Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically Your long text goes here. You can also change it programmaticallyYour long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically</string>
     <string name="lengthy_string2">Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically, Your long text goes here. You can also change it programmatically,Your long text goes here. You can also change it programmatically  </string>
+    <string name="permission_rationale_location">Please accept location for access 1 </string>
+    <string name="permission_required_toast">permission_required_toast</string>
+    <string name="location_permission_denied">Your location permissions are not accepted. please accept location permission for better access </string>
     <!--<string name="fileprovidercamera">com.taksycraft.testapplicatons.fileproviderforcamera</string>-->
 </resources>

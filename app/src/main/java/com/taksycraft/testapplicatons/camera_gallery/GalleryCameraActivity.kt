@@ -15,10 +15,12 @@ class GalleryCameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery_camera)
-        pickMediaActivity = PickMediaActivity(this, listen ={ s: String, bitmap: Bitmap?, s1: String? -> binding.iv.setImageBitmap(bitmap) })
+        pickMediaActivity = PickMediaActivity(this, listen ={ s: String, bitmap: Bitmap?, s1: String? ->
+            binding.iv.setImageBitmap(bitmap)
+        })
         binding.btnOpen.setOnClickListener { openCamera() }
         openCamera()
-        //        pickMediaActivity.requestPermissions();
+//                pickMediaActivity.requestPermissions();
     }
 
     private fun openCamera() {
