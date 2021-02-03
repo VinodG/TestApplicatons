@@ -29,19 +29,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".flow.FlowTestingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".gps.GPSActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".maps.MapsActivity" />
+        <activity android:name=".maps.MapsActivity" >
+
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,8 +50,15 @@
 
         <activity
             android:name=".camera_gallery.GalleryCameraActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".calendar.CalendarActivity" />
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".calendar.CalendarActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".recyclerview.DragAndDrop2Activity" />
         <activity android:name=".recyclerview.DragAndDropActivity" />
         <activity android:name=".dialogs.DialogTestingActivity" />

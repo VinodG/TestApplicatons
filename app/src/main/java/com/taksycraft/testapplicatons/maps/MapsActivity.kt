@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.taksycraft.testapplicatons.R
 import com.taksycraft.testapplicatons.databinding.ActivityMapsBinding
-import java.lang.StringBuilder
+import java.util.*
 
 class MapsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMapsBinding
@@ -28,7 +28,7 @@ class MapsActivity : AppCompatActivity() {
 
         binding.tvCentrePoint.setOnClickListener {
             var latlng = map.cameraPosition.target
-            addMarker(latlng,this.map)
+            addMarker(latlng, this.map)
         }
     }
     private val callback = OnMapReadyCallback { googleMap ->
@@ -59,8 +59,26 @@ class MapsActivity : AppCompatActivity() {
             sydney =it
             addMarker(sydney, googleMap)
         }
+//        getLocationFromLatLng(17.450191, 78.35667 )
+//        getLocationFromLatLng(18.384145, 78.800483 )
+//        getLocationFromLatLng(18.428674, 79.128929 )
+        getLocationFromLatLng(17.034651, 86.658436 )
 
 
+    }
+
+    private fun getLocationFromLatLng(lat: Double, lng: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses = geocoder.getFromLocation(lat, lng, 1)
+        val address = addresses[0].getAddressLine(0)
+        val city = addresses[0].locality
+        val featureName = address .split(",")[1]
+        val state = addresses[0].adminArea
+        val zip = addresses[0].postalCode
+        val country = addresses[0].countryName
+        println("location "+ address+", "+addresses+", "+city+", "+state+", "+zip+", "+country)
+        println("feature name "+city)
     }
 
     private fun addMarker(latLng: LatLng, googleMap: GoogleMap?) {
@@ -72,38 +90,38 @@ class MapsActivity : AppCompatActivity() {
     }
 
     private fun toast(str: String) {
-        Toast.makeText(this ,
+        Toast.makeText(this,
                 str,
                 Toast.LENGTH_LONG).show();
 
     }
-    public fun getLocationFromAddress(strAddress : String ):LatLng?{
+    public fun getLocationFromAddress(strAddress: String):LatLng?{
         val address : List<Address>
         try {
             Geocoder(this).getFromLocationName(strAddress, 10)?.let {
                  address = it
                 address[0].locality
-                 return LatLng(address.get(0).latitude,address.get(0).longitude)
+                 return LatLng(address.get(0).latitude, address.get(0).longitude)
              } ?: null
         } catch (e: Exception) {
             e.printStackTrace()
         }
         return null
     }
-    public fun getLocationListFromAddress(strAddress : String ):LatLng?{
+    public fun getLocationListFromAddress(strAddress: String):LatLng?{
         val address : List<Address>
         try {
             Geocoder(this).getFromLocationName(strAddress, 5)?.let {
                  address = it
                 var addrs  =  StringBuilder()
                 (0 until address.size).forEach {
-                    (0..address[it].maxAddressLineIndex).forEach {  i ->
-                        addrs.append(address[it].getAddressLine(i)+",- ")
+                    (0..address[it].maxAddressLineIndex).forEach { i ->
+                        addrs.append(address[it].getAddressLine(i) + ",- ")
                     }
                     addrs.append('\n')
                 }
                 println(addrs.toString())
-                 return LatLng(address.get(0).latitude,address.get(0).longitude)
+                 return LatLng(address.get(0).latitude, address.get(0).longitude)
              } ?: null
         } catch (e: Exception) {
             e.printStackTrace()

@@ -85,35 +85,35 @@ class CalendarAdapter(var list: MutableList<CalendarDO> = mutableListOf() ): Rec
         }
     }
 
-private fun setUi(tv: TextView, selectedDate: Calendar, obj: CalendarDO) {
-    if(selectedDate.toDate() == obj.cal.toDate()){
-        tv.setBackgroundResource(R.drawable.circle_drawable)
-    }else
-        tv.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
+    private fun setUi(tv: TextView, selectedDate: Calendar, obj: CalendarDO) {
+        if(selectedDate.toDate() == obj.cal.toDate()){
+            tv.setBackgroundResource(R.drawable.circle_drawable)
+        }else
+            tv.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
 
-}
+    }
 
-override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
-        DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_calendar_date, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_calendar_date, parent, false))
 
-override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bind(position)
-}
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(position)
+    }
 
-override fun getItemCount() = list.size
-fun refresh( list: MutableList<CalendarDO> ){
-    this.list = list
-    notifyDataSetChanged()
-}
+    override fun getItemCount() = list.size
+    fun refresh( list: MutableList<CalendarDO> ){
+        this.list = list
+        notifyDataSetChanged()
+    }
 
-fun setDateSelectionListener(singleDateSelection: (Calendar) -> Unit) {
-    isSingleDateSelection = true
-    this.singleDateSelection = singleDateSelection
-}
-fun setDateRangeListener(dateRangeListener: (Calendar,Calendar) -> Unit) {
-    isSingleDateSelection = false
-    this.dateRangeListener = dateRangeListener
-}
+    fun setDateSelectionListener(singleDateSelection: (Calendar) -> Unit) {
+        isSingleDateSelection = true
+        this.singleDateSelection = singleDateSelection
+    }
+    fun setDateRangeListener(dateRangeListener: (Calendar,Calendar) -> Unit) {
+        isSingleDateSelection = false
+        this.dateRangeListener = dateRangeListener
+    }
 }
 
 private fun Calendar.toDate(): String {
