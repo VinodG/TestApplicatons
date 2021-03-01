@@ -78,8 +78,6 @@ public class AnotherAppContentResolver extends AppCompatActivity {
                         tvCurrentUserName.setText(str);
                     }
                 });
-
-
             }
         }catch (Exception e)
         {
