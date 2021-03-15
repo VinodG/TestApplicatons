@@ -1,16 +1,12 @@
-package com.vinod.java.productconsumer_threading;
-
-import com.vinod.java.SharedClass;
-import com.vinod.java.Thread1;
-import com.vinod.java.Thread2;
+package com.vinod.lib.alternative_threads_sequence;
 
 public class ThreadTesting {
     public static void main(String arg [])
     {
         System.out.println("from main");
         ProductQueue queue = new ProductQueue();
-        Producer th1 = new Producer(queue);
-        Consumer th2 = new Consumer(queue);
+        Thread1 th1 = new Thread1(queue);
+        Thread2 th2 = new Thread2(queue);
         th1.start();
         th2.start();
         try {

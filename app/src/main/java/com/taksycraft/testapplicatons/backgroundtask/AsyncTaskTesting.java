@@ -14,12 +14,11 @@ public class AsyncTaskTesting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_fragment1);
-        for (int i = 0 ;i<4;i++)
+        for (int i = 0 ;i<12;i++)
             new MyAsyncTask().execute();
     }
     class MyAsyncTask extends AsyncTask
     {
-
         @Override
         protected Object doInBackground(Object[] objects) {
             for (int i = 0;i<10;i++)
@@ -29,16 +28,14 @@ public class AsyncTaskTesting extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.e("AsyncTask",Thread.currentThread().getId()+" "+i);
+                Log.e("AsyncTask",Thread.currentThread().getName()+" "+i);
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Log.e("AsyncTask", "onPostExecute");
-
         }
     }
 }

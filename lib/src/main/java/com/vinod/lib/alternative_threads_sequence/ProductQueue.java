@@ -1,4 +1,4 @@
-package com.vinod.java.alternative_threads_sequence;
+package com.vinod.lib.alternative_threads_sequence;
 
 import java.util.Vector;
 

@@ -47,6 +47,7 @@ public class MyIntentService extends IntentService {
         NotificationChrono.updateNotification(getApplicationContext(),
                 false,
                 NOTIFICATION_ID,
+                "channel_id",
                 "title",
                 "text",
                 notificationManager);

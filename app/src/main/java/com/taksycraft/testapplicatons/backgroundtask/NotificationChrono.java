@@ -16,8 +16,8 @@ import com.taksycraft.testapplicatons.activities.FirstActivity;
 public class NotificationChrono {
     public static Notification.Builder builder;
 
-    public static  void updateNotification(Context context, boolean running,
-                                           int id, String title, String text,
+    public static  void updateNotification(Context context, boolean running,int notifyID ,
+                                           String CHANNEL_ID, String title, String text,
                                            NotificationManager notificationManager) {
         Log.e("NotificationChrono","updateNotification");
         Intent stopIntent =  new Intent(
@@ -27,12 +27,10 @@ public class NotificationChrono {
                 0, stopIntent, 0);
 // Create a notification and set the notification channel.
 
-        String CHANNEL_ID = "my_channel_01";// The id of the channel.
+//        String CHANNEL_ID = "my_channel_01";// The id of the channel.
         Notification notification=null;
-        int notifyID = 1;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Sets an ID for the notification, so it can be updated.
-
             CharSequence name = "ChannelName" ;// The user-visible name of the channel.
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
@@ -41,11 +39,8 @@ public class NotificationChrono {
                     .setContentTitle("New Message")
                     .setContentText("You've received new messages.")
                     .setSmallIcon(R.drawable.icn_popup_close)
-                    .setChannelId(CHANNEL_ID)
-                     ;
-        }
-        else
-        {
+                    .setChannelId(CHANNEL_ID) ;
+        }else{
             builder = new Notification.Builder(
                     context)
 
@@ -73,16 +68,8 @@ public class NotificationChrono {
                             "stop", stopPendingIntent);
 
         }
-
-
 // Issue the notification.
         notificationManager.notify(notifyID , builder.build());
-
-
-
-
-
-
     }
     public static void update(int NOTIFICATION_ID, NotificationManager notificationManager)
     {

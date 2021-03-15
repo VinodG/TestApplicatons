@@ -1,6 +1,4 @@
-package com.vinod.java;
-
-import java.util.Collections;
+package com.vinod.lib;
 
 public class ThreadTesting {
     public static void main(String arg [])

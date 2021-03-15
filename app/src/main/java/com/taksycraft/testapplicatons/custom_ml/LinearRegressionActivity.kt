@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.taksycraft.testapplicatons.R
 import com.taksycraft.testapplicatons.databinding.ActivityLinearRegressionBinding
 import org.tensorflow.lite.Interpreter
+import java.io.File
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel

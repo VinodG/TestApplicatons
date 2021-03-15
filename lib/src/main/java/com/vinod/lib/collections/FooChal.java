@@ -1,4 +1,4 @@
-package com.vinod.java.collections;
+package com.vinod.lib.collections;
 
 import java.util.ArrayList;
 import java.util.Arrays;

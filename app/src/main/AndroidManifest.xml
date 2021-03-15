@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- network connnections -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".MyApplication"
@@ -36,11 +37,6 @@
             android:exported="true" />
 
         <activity android:name=".custom_ml.LinearRegressionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".files.PdfActivity" />
         <activity android:name=".flow.FlowTestingActivity" />
@@ -119,7 +115,12 @@
         <activity android:name=".activities.SecondActivity" />
         <activity android:name=".activities.FirstActivity" />
         <activity android:name=".backgroundtask.ThreadsActivity" />
-        <activity android:name=".backgroundtask.BackgroundtakTestingActivity" />
+        <activity android:name=".backgroundtask.BackgroundtakTestingActivity"  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
         <activity android:name=".sqlite.SqliteActivity" />
         <activity android:name=".customviews.ViewsTestingActivity" />
@@ -195,7 +196,9 @@
         <activity android:name=".camera.ImagePickerActivity" />
         <activity android:name=".recyclerview.RecyclerViewActivity" />
         <activity android:name=".recyclerview.RecyclerViewWithVoiceChatItemsActivity" />
-        <activity android:name=".firebasedatabase.RegistationActivity" />
+        <activity android:name=".firebasedatabase.RegistationActivity"  >
+
+        </activity>
         <activity android:name=".firebasedatabase.UsersActivity" />
         <activity android:name=".firebasedatabase.ChatActivity" />
         <activity android:name=".animations.AnimationActivity" />
@@ -205,9 +208,13 @@
         <activity android:name=".screenshots.ScreenShotActivity" />
         <activity
             android:name=".customviews.BackgroundDrawableTesingActivity"
-            android:lockTaskMode="always" />
+            android:lockTaskMode="always"  >
+
+        </activity>
         <activity android:name=".fragments.MainFragmentActivity" />
-        <activity android:name=".backgroundtask.AsyncTaskTesting" />
+        <activity android:name=".backgroundtask.AsyncTaskTesting"  >
+
+        </activity>
         <activity android:name=".TimerActvity" />
         <activity android:name=".appcrash.apprestart.AppRestartOnCrashActivity" />
 

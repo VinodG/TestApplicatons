@@ -1,4 +1,4 @@
-package com.vinod.java;
+package com.vinod.lib;
 
 public class SharedClass {
 

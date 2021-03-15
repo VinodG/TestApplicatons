@@ -21,6 +21,7 @@ public class ForegroundService extends Service {
     private static final int NOTIFICATION_ID =  1 ;
     private static final String CHANNEL_ID ="ForegroundServiceChannel" ;
     private NotificationManager notificationManager;
+    private CounterThread thread;
 
     public ForegroundService() {
 
@@ -36,15 +37,20 @@ public class ForegroundService extends Service {
         NotificationChrono.updateNotification(getApplicationContext(),
                 false,
                 NOTIFICATION_ID,
+                "Channel_id_1",
                 "title",
                 "text",
                 notificationManager);
+        thread = new CounterThread();
 
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
+        thread.interrupt();
+        thread =null;
         Log.e(TAG, new Exception().getStackTrace()[0].getMethodName());
+
     }
 
     @Override
@@ -85,23 +91,23 @@ public class ForegroundService extends Service {
     }
 
     private void startCounting(  ) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0;i<600;i++)
-                {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e(TAG,Thread.currentThread().getId()+" -- "+i);
-                    NotificationChrono.update(NOTIFICATION_ID,notificationManager);
-                }
-                stopSelf();
-            }
-        }).start();
+        thread.start();
     }
+    class CounterThread extends Thread{
+        @Override
+        public void run() {
+            for (int i = 0;i<15;i++){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                Log.e(TAG,Thread.currentThread().getId()+" -- "+i);
+                NotificationChrono.update(NOTIFICATION_ID,notificationManager);
+            }
+            stopSelf();
+        }
+    }
 
 }

@@ -1,6 +1,5 @@
-package com.vinod.java.productconsumer_threading;
+package com.vinod.lib.productconsumer_threading;
 
-import com.taksycraft.testapplicatons.common.CommonAdapter;
 
 import java.util.Vector;
 

@@ -1,11 +1,9 @@
-package com.vinod.java.productconsumer_threading;
+package com.vinod.lib.productconsumer_threading;
 
-import com.vinod.java.SharedClass;
-
-public class Producer extends  Thread {
+public class Consumer extends  Thread {
     private   ProductQueue queue;
 
-    public Producer(ProductQueue queue) {
+    public Consumer(ProductQueue queue) {
         this.queue = queue;
     }
 
@@ -15,7 +13,7 @@ public class Producer extends  Thread {
         for (int i = 0 ;i<1000;i++)
         {
 //            System.out.println(Thread.currentThread().getName()+" "+i);
-            queue.produce("product "+i);
+            queue.consume();
         }
 
     }

@@ -30,8 +30,6 @@ public class UsersActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private EditText etInput;
     private String TAG = UsersActivity.this.getClass().getSimpleName();
-    FirebaseRecyclerOptions<ChatDO> options;
-    private FirebaseRecyclerAdapter<ChatDO, ChatHolder> chatAdapter;
     private FirebaseRecyclerAdapter<String, ChatHolder> adapterUsers;
     RecyclerView rvChat;
     private String currentUserName;
@@ -54,9 +52,9 @@ public class UsersActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(DatabaseConstants.USER_PATH);
         Query queryUser = myRef;
-        Query quryUser = myRef;
-//                .limitToLast(50);
-        quryUser.addValueEventListener(userValueEventListener);
+//        Query quryUser = myRef;
+////                .limitToLast(50);
+//        quryUser.addValueEventListener(userValueEventListener);
 
         optionsUsers = new FirebaseRecyclerOptions.Builder<String>()
                 .setQuery(queryUser, String.class)

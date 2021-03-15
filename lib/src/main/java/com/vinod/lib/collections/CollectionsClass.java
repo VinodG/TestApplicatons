@@ -1,14 +1,15 @@
-package com.vinod.java.collections;
+package com.vinod.lib.collections;
 
-import android.util.Log;
 
-import androidx.annotation.Nullable;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CollectionsClass {
     public static void main(String[] str)
@@ -19,12 +20,38 @@ public class CollectionsClass {
         list.add(new Product(1,"one"));
         list.add(new Product(2,"one"));
         list.add(new Product(3,"one"));
+        testSet(list);
+//        testTree(list);
+//        TreeSet<Product>    ts = new TreeSet<Product>(list);
+    }
+
+    private static void testSet(ArrayList<Product> list) {
         Set<Product> set =new LinkedHashSet<Product>(list);
         list.clear();
         list.addAll(set);
         System.out.println("size "+list.size()); //print - > 3
     }
-    public static class Product
+
+    private static void testTree(ArrayList<Product> list) {
+        List<String> li = new ArrayList<String>();
+        li.add("one");
+        li.add("two");
+        li.add("three");
+        li.add("four");
+        System.out.println("List: "+li);
+        //create a treeset with the list
+        TreeSet<Product> myset = new TreeSet<Product>(/*new Comparator<Product>() {
+            @Override
+            public int compare(Product product, Product t1) {
+                return product.id - t1.id;
+            }
+        }*/);
+        myset.addAll(list);
+        for (Product p:myset)
+            System.out.println("Set: "+p.id);
+    }
+
+    public static class Product implements Comparable<Product>
     {
         int id = 0;
         String name ="";
@@ -36,18 +63,23 @@ public class CollectionsClass {
         }
 
         @Override
-        public boolean equals(@Nullable Object obj) {
+        public boolean equals( Object obj) {
             System.out.println(" equals is called");
             Product product = (Product)obj;
             return  this.id   == product.id &&
-            this.name   .equals(product.name ) &&
-            this.sex .equals(product.sex);
+                    this.name.equals(product.name) &&
+                    this.sex.equals(product.sex);
         }
 
         @Override
         public int hashCode() {
             System.out.println("hashcode is called ");
             return id+"".hashCode()+name.hashCode()+sex.hashCode();
+        }
+
+        @Override
+        public int compareTo(Product product) {
+            return   (this.id - product.id) ;
         }
     }
 
