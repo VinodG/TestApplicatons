@@ -37,7 +37,13 @@ public class MyIntentService extends IntentService {
                 e.printStackTrace();
             }
             Log.e(TAG, Thread.currentThread().getName()+"   "+i);
-//            NotificationChrono.update(NOTIFICATION_ID,i+" - seconds",notificationManager);
+            NotificationChrono.updateNotification(this,
+                    false,
+                    NOTIFICATION_ID,
+                    (i+1)+" - seconds",
+                    "Title",
+                    "text "+(i+1),
+                    notificationManager);
         }
 
     }

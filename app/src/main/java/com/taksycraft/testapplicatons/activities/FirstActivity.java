@@ -2,7 +2,11 @@ package com.taksycraft.testapplicatons.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -25,6 +29,23 @@ public class FirstActivity extends AppCompatActivity {
         setTitle("FirstActivity");
         object = new ChatDO();
         object.msg= "FirstActivity";
+        giveRing();
+
+    }
+
+    private void giveRing() {
+        Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if (alarmUri == null) {
+            alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        }
+        Ringtone ringtone = RingtoneManager.getRingtone(this, alarmUri);
+        ringtone.play();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ringtone.stop();
+            }
+        },6000);
     }
 
 

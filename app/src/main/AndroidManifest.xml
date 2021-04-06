@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taksycraft.testapplicatons">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- calling an app -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -29,15 +31,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fcm.RecevierOnFCMActivity"></activity>
+        <receiver
+            android:name=".alarm.AlarmWakeUpReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".alarm.AlarmService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".alarm.AlarmActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".maps.PlacesActivity" />
+        <activity android:name=".fcm.RecevierOnFCMActivity" />
 
         <service
             android:name=".fcm.OpenActivityService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".custom_ml.LinearRegressionActivity">
-        </activity>
+        <activity android:name=".custom_ml.LinearRegressionActivity" />
         <activity android:name=".files.PdfActivity" />
         <activity android:name=".flow.FlowTestingActivity" />
         <activity android:name=".gps.GPSActivity" />
@@ -113,14 +137,9 @@
         <activity android:name=".parsing.ParsingTestingActivity" />
         <activity android:name=".retrofit.UploadingFileActivity" />
         <activity android:name=".activities.SecondActivity" />
-        <activity android:name=".activities.FirstActivity" />
+        <activity android:name=".activities.FirstActivity"></activity>
         <activity android:name=".backgroundtask.ThreadsActivity" />
-        <activity android:name=".backgroundtask.BackgroundtakTestingActivity"  >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".backgroundtask.BackgroundtakTestingActivity" />
         <activity android:name=".schedulers.jobschedulers.JobSchedulerApp" />
         <activity android:name=".sqlite.SqliteActivity" />
         <activity android:name=".customviews.ViewsTestingActivity" />
@@ -196,25 +215,18 @@
         <activity android:name=".camera.ImagePickerActivity" />
         <activity android:name=".recyclerview.RecyclerViewActivity" />
         <activity android:name=".recyclerview.RecyclerViewWithVoiceChatItemsActivity" />
-        <activity android:name=".firebasedatabase.RegistationActivity"  >
-
-        </activity>
+        <activity android:name=".firebasedatabase.RegistationActivity" />
         <activity android:name=".firebasedatabase.UsersActivity" />
         <activity android:name=".firebasedatabase.ChatActivity" />
         <activity android:name=".animations.AnimationActivity" />
         <activity android:name=".rxjava.RxNextActivity" />
         <activity android:name=".rxjava.RxJavaMainActivity" />
         <activity android:name=".customkeypad.KeypadActivity" />
-        <activity android:name=".screenshots.ScreenShotActivity" />
         <activity
             android:name=".customviews.BackgroundDrawableTesingActivity"
-            android:lockTaskMode="always"  >
-
-        </activity>
+            android:lockTaskMode="always" />
         <activity android:name=".fragments.MainFragmentActivity" />
-        <activity android:name=".backgroundtask.AsyncTaskTesting"  >
-
-        </activity>
+        <activity android:name=".backgroundtask.AsyncTaskTesting" />
         <activity android:name=".TimerActvity" />
         <activity android:name=".appcrash.apprestart.AppRestartOnCrashActivity" />
 

@@ -8,27 +8,25 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.taksycraft.testapplicatons.R;
 
 import java.util.Locale;
 
 public class DialogTestingActivity extends AppCompatActivity {
-
+    private static final String TAG = "DialogTestingActivity";
     private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-setArabicLocale();
-
-
-
-
+//        setArabicLocale();
         setContentView(R.layout.activity_dialog_testing);
 //        TopUpDialog di`alog = new TopUpDialog(this,R.style.DialogMenu);
 //        dialog.show();
@@ -42,8 +40,33 @@ setArabicLocale();
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
-        dialog.show();
 
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onResume: "  );
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart: "  );
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: "  );
+        dialog.show();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        }, 4000);
     }
 
     private void setArabicLocale() {

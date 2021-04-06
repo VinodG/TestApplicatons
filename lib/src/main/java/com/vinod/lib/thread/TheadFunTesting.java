@@ -9,7 +9,7 @@ public class TheadFunTesting   {
         public void run() {
             for (int i = 1; i <30 ; i++) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -21,15 +21,27 @@ public class TheadFunTesting   {
 
 
     public static void main(String args[])  {
-        Thread t1 = new Thread(new MyRunnable(), "First" );
+        ThreadGroup tg = new ThreadGroup("group1");
+        Thread t1 = new Thread(tg, new MyRunnable(), "First" );
         Thread t2 = new Thread(new MyRunnable(),"Second");
         Thread t3 = new Thread(new MyRunnable(), "Third");
 //        executeThreadsInSequence(t1,t2);
 //        executeThreadsInParallel(t1,t2);
 //        executeThreadsInParallelWithPriority(t1,t2,t3);
-        setThreadPoolExecutor(t1);
+//        setThreadPoolExecutor(t1);
+        interruptingThread(t1,tg);
         
         System.out.println("end");
+    }
+
+    private static void interruptingThread(Thread t1, ThreadGroup tg) {
+        t1.start();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        tg.stop();
     }
 
     private static void setThreadPoolExecutor(Thread t1) {

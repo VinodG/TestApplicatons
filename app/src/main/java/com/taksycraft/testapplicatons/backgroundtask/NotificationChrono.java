@@ -12,10 +12,12 @@ import android.util.Log;
 import com.taksycraft.testapplicatons.R;
 import com.taksycraft.testapplicatons.activities.FirstActivity;
 
+import kotlin.jvm.JvmStatic;
+
 //    https://stackoverflow.com/questions/14885368/update-text-of-notification-not-entire-notification
 public class NotificationChrono {
     public static Notification.Builder builder;
-
+    @JvmStatic
     public static  void updateNotification(Context context, boolean running,int notifyID ,
                                            String CHANNEL_ID, String title, String text,
                                            NotificationManager notificationManager) {
