@@ -18,7 +18,7 @@ class AlarmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
-        createAlarm(10)
+//        createAlarm(10)
     }
 
     private fun createAlarm(duration: Int) {

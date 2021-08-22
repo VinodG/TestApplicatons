@@ -29,7 +29,7 @@ public class FirstActivity extends AppCompatActivity {
         setTitle("FirstActivity");
         object = new ChatDO();
         object.msg= "FirstActivity";
-        giveRing();
+//        giveRing();
 
     }
 
